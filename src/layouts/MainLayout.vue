@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar class="bg-brown">
         <q-btn
           flat
           dense
@@ -23,6 +23,9 @@
       bordered
       content-class="bg-grey-1"
     >
+      <div class="bg-brown header">
+        <q-img src="images/home/logo_white.png" />
+      </div>
       <q-list>
         <!-- <q-item-label header class="text-grey-8">
           Essential Links
@@ -89,3 +92,5 @@ export default {
   }
 };
 </script>
+
+<style scoped></style>

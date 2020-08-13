@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-item v-if="!children" clickable tag="a" target="_blank" :href="link">
+    <q-item v-if="!children" clickable :to="link">
       <q-item-section v-if="icon" avatar>
         <q-icon :name="icon" />
       </q-item-section>
@@ -11,14 +11,13 @@
         </q-item-label>
       </q-item-section>
     </q-item>
+
     <q-expansion-item v-else :icon="icon" :label="title">
       <q-item
         v-for="link in children"
         :key="link.link"
         clickable
-        tag="a"
-        target="_blank"
-        :href="link"
+        :to="link.link"
       >
         <q-item-section v-if="link.icon" avatar>
           <q-icon :name="link.icon" />

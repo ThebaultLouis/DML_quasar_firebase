@@ -1,17 +1,47 @@
 <template>
   <div>
-    <q-img :src="headerTitleImage" />
-    <q-img :src="headerSubtitleImage" />
-    <q-img :src="headerTitleImage">
-      <slot> </slot>
-    </q-img>
+    <div class="q-pa-sm bg-amber-2">
+      <div class="row justify-center">
+        <div class="col-11 col-sm-6">
+          <q-img :src="titlePath" />
+        </div>
+      </div>
+    </div>
+    <q-img :src="subtitlePath" />
+    <!-- <div :style="{background-image : url(backgroundPath}"> -->
+    <div
+      class="background"
+      v-bind:style="{ 'background-image': 'url(' + backgroundPath + ')' }"
+    >
+      <q-page-container>
+        <v-row class="justify-center">
+          <slot> </slot>
+        </v-row>
+      </q-page-container>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["headerTitleImage", "headerSubtitleImage", "backgroundImage"]
+  props: ["image"],
+  computed: {
+    titlePath() {
+      return "/images/home/title/" + this.image;
+    },
+    subtitlePath() {
+      return "/images/home/subtitle/" + this.image;
+    },
+    backgroundPath() {
+      return "/images/home/background/" + this.image;
+    }
+  }
 };
 </script>
 
-<style></style>
+<style>
+.background {
+  /* background: center / contain no-repeat; */
+  background-size: cover;
+}
+</style>
