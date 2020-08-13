@@ -1,6 +1,11 @@
 <template>
   <div>
-    <q-item v-if="!children" clickable :to="link">
+    <q-item
+      v-if="!children"
+      clickable
+      :to="{ name: linkName }"
+      active-class="text-brown"
+    >
       <q-item-section v-if="icon" avatar>
         <q-icon :name="icon" />
       </q-item-section>
@@ -15,9 +20,10 @@
     <q-expansion-item v-else :icon="icon" :label="title">
       <q-item
         v-for="link in children"
-        :key="link.link"
+        :key="link.linkName"
         clickable
-        :to="link.link"
+        :to="{ name: link.linkName }"
+        active-class="text-brown"
       >
         <q-item-section v-if="link.icon" avatar>
           <q-icon :name="link.icon" />
@@ -42,9 +48,9 @@ export default {
       required: true
     },
 
-    link: {
+    linkName: {
       type: String,
-      default: "#"
+      default: "Home"
     },
 
     icon: {

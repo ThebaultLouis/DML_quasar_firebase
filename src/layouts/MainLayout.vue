@@ -51,7 +51,7 @@ const linksData = [
   {
     title: "Accueil",
     icon: "home",
-    link: "/"
+    linkName: "Home"
   },
   {
     title: "Country",
@@ -60,24 +60,24 @@ const linksData = [
       {
         title: "Danses",
         icon: "group",
-        link: "/country/dances"
+        linkName: "CountryDances"
       },
       {
         title: "Cours",
         icon: "school",
-        link: "/country/courses"
+        linkName: "CountryCourses"
       }
     ]
   },
   {
     title: "Manifestations",
     icon: "event",
-    link: "/events"
+    linkName: "Events"
   },
   {
     title: "Album photo",
     icon: "photo",
-    link: "/album"
+    linkName: "Albums"
   }
 ];
 
