@@ -14,9 +14,9 @@
       v-bind:style="{ 'background-image': 'url(' + backgroundPath + ')' }"
     >
       <q-page-container>
-        <v-row class="justify-center">
+        <div class="row justify-center">
           <slot> </slot>
-        </v-row>
+        </div>
       </q-page-container>
     </div>
   </div>
