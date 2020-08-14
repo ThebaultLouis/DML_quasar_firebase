@@ -18,9 +18,9 @@ const routes = [
       },
       // Courses
       {
-        path: "country/course",
-        name: "CountryCourses",
-        component: () => import("pages/country/Courses.vue")
+        path: "country/classes",
+        name: "CountryClasses",
+        component: () => import("pages/country/Classes.vue")
       },
       // Events
       {

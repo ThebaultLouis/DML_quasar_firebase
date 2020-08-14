@@ -18,6 +18,7 @@
     </q-item>
 
     <q-expansion-item v-else :icon="icon" :label="title">
+      <q-separator />
       <q-item
         v-for="link in children"
         :key="link.linkName"

@@ -1,15 +1,12 @@
 <template>
   <div>
-    <!-- <div class="row">
-      <div class="col"></div>
-      <div class="col-2 text-h6 text-center">pdf</div>
-      <div class="col-2 text-h6 text-center">choregraphie</div>
-      <div class="col-2 text-h6 text-center">musique</div>
-    </div> -->
+    <!-- <q-infinite-scroll @load="onLoad" :offset="100"> -->
     <div v-for="dance in dances" :key="dance._id">
-      <Item v-bind="dance" />
       <q-separator />
+      <Item v-bind="dance" />
     </div>
+    <!-- </q-infinite-scroll> -->
+    <q-separator />
   </div>
 </template>
 
@@ -21,11 +18,17 @@ export default {
     Item: () => import("components/dance/Item")
   },
   beforeMount() {
-    console.log(this.dances);
+    this.$store.dispatch("dance/initDances");
   },
   computed: mapState({
     dances: state => state.dance.dances
-  })
+  }),
+  methods: {
+    async onLoad(index, done) {
+      await this.$store.dispatch("dance/fetchMoreDances");
+      done();
+    }
+  }
 };
 </script>
 

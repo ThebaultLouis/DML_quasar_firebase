@@ -8,8 +8,8 @@
 <script>
 export default {
   components: {
-    Search: () => import("components/dance/Search"),
-    Dances: () => import("components/dance/ItemList")
+    Search: () => import("components/classe/Search"),
+    Dances: () => import("components/classe/ItemList")
   }
 };
 </script>

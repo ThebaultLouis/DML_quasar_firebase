@@ -31,6 +31,24 @@ const dances = [
 export default {
   namespaced: true,
   state: {
-    dances: dances
+    dances: []
+  },
+  mutations: {
+    initDances(state) {
+      state.dances = dances;
+    },
+    fetchMoreDances(state) {
+      state.dances.push(...dances);
+    }
+  },
+  actions: {
+    initDances(context) {
+      context.commit("initDances");
+    },
+    async fetchMoreDances(context) {
+      setTimeout(() => {
+        context.commit("fetchMoreDances");
+      }, 2000);
+    }
   }
 };

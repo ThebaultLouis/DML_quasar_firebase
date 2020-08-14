@@ -65,7 +65,7 @@ const linksData = [
       {
         title: "Cours",
         icon: "school",
-        linkName: "CountryCourses"
+        linkName: "CountryClasses"
       }
     ]
   },

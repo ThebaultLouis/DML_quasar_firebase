@@ -1,15 +1,14 @@
 <template>
-  <div class="col-2">
-    <q-btn
-      v-if="link"
-      type="a"
-      :href="link"
-      target="_blank"
-      flat
-      :icon="icon"
-      size="30px"
-    />
-  </div>
+  <q-btn
+    v-if="link"
+    type="a"
+    :href="link"
+    target="_blank"
+    flat
+    color="brown"
+    :icon="icon"
+    size="25px"
+  />
 </template>
 
 <script>

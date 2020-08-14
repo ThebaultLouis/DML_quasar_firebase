@@ -114,7 +114,7 @@ module.exports = function(/* ctx */) {
       manifest: {
         name: `danse-musique-laille`,
         short_name: `danse-musique-laille`,
-        description: `A Quasar Framework app`,
+        description: `Le site web de l'association danse musique laillé (DML). Ce site permet de voir les derniers cours de Country enseignés. `,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
