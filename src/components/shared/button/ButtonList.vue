@@ -18,7 +18,7 @@
 export default {
   props: ["choreographyPdf", "choreographyLink", "songLink"],
   components: {
-    Button: () => import("components/dance/Button")
+    Button: () => import("components/shared/button/Button")
   }
 };
 </script>

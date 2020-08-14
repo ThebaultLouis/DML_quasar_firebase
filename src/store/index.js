@@ -2,7 +2,10 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 // import example from './module-example'
+import album from "./album";
+import classe from "./classe";
 import dance from "./dance";
+import event from "./event";
 
 Vue.use(Vuex);
 
@@ -19,7 +22,10 @@ export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       // example
-      dance
+      album,
+      classe,
+      dance,
+      event
     },
 
     // enable strict mode (adds overhead!)

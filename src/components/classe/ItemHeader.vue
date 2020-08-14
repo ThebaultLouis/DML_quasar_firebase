@@ -20,7 +20,7 @@
 export default {
   props: ["name", "doneOn", "choreographyPdf", "choreographyLink", "songLink"],
   components: {
-    ButtonList: () => import("components/dance/ButtonList")
+    ButtonList: () => import("components/shared/button/ButtonList")
   }
 };
 </script>

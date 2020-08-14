@@ -6,7 +6,7 @@
         filled
         v-model="model"
         :options="options"
-        label="Niveau"
+        label="Lieu"
         color="brown"
         clearable
       />
@@ -25,7 +25,7 @@ export default {
   },
   data: () => ({
     model: null,
-    options: ["Débutant", "Intermédiaire", "Avancé"],
+    options: ["Domicile", "Extérieur"],
     date: ""
   })
 };

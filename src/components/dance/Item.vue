@@ -6,9 +6,6 @@
       :choreographyLink="choreographyLink"
       :songLink="songLink"
     />
-    <!-- <Button :link="choreographyPdf" icon="picture_as_pdf" />
-    <Button :link="choreographyLink" icon="music_video" />
-    <Button :link="songLink" icon="music_note" /> -->
   </div>
 </template>
 
@@ -16,8 +13,7 @@
 export default {
   props: ["name", "choreographyPdf", "choreographyLink", "songLink"],
   components: {
-    ButtonList: () => import("components/dance/ButtonList")
-    // Button: () => import("components/dance/Button")
+    ButtonList: () => import("components/shared/button/ButtonList")
   }
 };
 </script>
