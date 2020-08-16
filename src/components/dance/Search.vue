@@ -2,7 +2,7 @@
   <div class="row q-ma-sm justify-end">
     <div class="col-12 col-sm-6 col-md-4">
       <q-input
-        v-model="search"
+        v-model="searchName"
         filled
         color="brown"
         label="Rechercher une danse"
@@ -18,9 +18,16 @@
 
 <script>
 export default {
-  data: () => ({
-    search: ""
-  })
+  computed: {
+    searchName: {
+      get() {
+        return this.$store.state.dance.searchName;
+      },
+      set(value) {
+        this.$store.dispatch("dance/searchDances", value);
+      }
+    }
+  }
 };
 </script>
 

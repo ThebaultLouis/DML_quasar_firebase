@@ -1,54 +1,61 @@
-const dances = [
-  {
-    _id: "5dac55a23a13d20011df9d92",
-    name: "Snap",
-    __v: 0,
-    type: 0,
-    choreographyPdf:
-      "https://res.cloudinary.com/dkxcax6es/image/upload/v1564905399/dml-laille/seed_danse/snap.pdf",
-    songLink: "https://www.youtube.com/watch?v=WKBKLo4EiB0&feature=youtu.be"
-  },
-  {
-    _id: "5dac55a23a13d20011df9d93",
-    name: "Born to be great",
-    __v: 0,
-    type: 0,
-    choreographyPdf:
-      "https://res.cloudinary.com/dkxcax6es/image/upload/v1564905408/dml-laille/seed_danse/Born_to_be_great.pdf",
-    songLink: "https://www.youtube.com/watch?v=O-gXwSDoIxg"
-  },
-  {
-    _id: "5dac55a23a13d20011df9d98",
-    name: "Indian sound",
-    __v: 0,
-    type: 0,
-    choreographyPdf:
-      "https://res.cloudinary.com/dkxcax6es/image/upload/v1564905421/dml-laille/seed_danse/indian_sound.pdf",
-    choreographyLink: "https://www.youtube.com/watch?v=wMU2Zl-Bctk&t=216s",
-    songLink: "https://www.youtube.com/watch?v=wMU2Zl-Bctk&t=216s"
-  }
-];
+import { db, utils } from "../../services/firebase";
+
+const DANCES_PER_FETCHING = 10;
+
 export default {
   namespaced: true,
   state: {
-    dances: []
+    dances: [],
+    filteredDances: [],
+    searchName: ""
   },
   mutations: {
-    initDances(state) {
-      state.dances = dances;
-    },
-    fetchMoreDances(state) {
+    setDances(state, dances) {
       state.dances.push(...dances);
+    },
+    setSearchName(state, name) {
+      state.searchName = name;
+    },
+    clearSearchName(state) {
+      state.searchName = "";
+    },
+    setFilteredDances(state, dances) {
+      state.filteredDances = dances;
+    }
+  },
+  getters: {
+    isFiltering(state) {
+      return state.searchName != "";
+    },
+    lastFetchedDanceName(state) {
+      if (!state.dances.length) return "";
+      return state.dances[state.dances.length - 1].name;
     }
   },
   actions: {
-    initDances(context) {
-      context.commit("initDances");
+    async fetchDances(context) {
+      console.log(context.getters.lastFetchedDanceName);
+      var docs = await db
+        .collection("dances")
+        .orderBy("name")
+        .startAfter(context.getters.lastFetchedDanceName)
+        .limit(DANCES_PER_FETCHING)
+        .get();
+      var dances = utils.docsIntoArray(docs);
+
+      context.commit("setDances", dances);
     },
-    async fetchMoreDances(context) {
-      setTimeout(() => {
-        context.commit("fetchMoreDances");
-      }, 2000);
+    async searchDances(context, searchName) {
+      searchName = searchName.charAt(0).toUpperCase() + searchName.slice(1);
+      context.commit("setSearchName", searchName);
+      var docs = await db
+        .collection("dances")
+        .orderBy("name")
+        .startAt(searchName)
+        .endAt(searchName + "\uf8ff")
+        .get();
+      var dances = utils.docsIntoArray(docs);
+      context.commit("setFilteredDances", dances);
     }
   }
 };

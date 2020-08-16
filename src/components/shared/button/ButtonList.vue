@@ -5,7 +5,7 @@
         <Button :link="choreographyPdf" icon="picture_as_pdf" />
       </div>
       <div class="col-4">
-        <Button :link="choreographyLink" icon="music_video" />
+        <Button :link="choreographyVideo" icon="music_video" />
       </div>
       <div class="col-4">
         <Button :link="songLink" icon="music_note" />
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: ["choreographyPdf", "choreographyLink", "songLink"],
+  props: ["choreographyPdf", "choreographyVideo", "songLink"],
   components: {
     Button: () => import("components/shared/button/Button")
   }

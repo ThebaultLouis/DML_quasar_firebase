@@ -3,7 +3,7 @@
     <div class="col text-h6 q-ml-sm">{{ name }}</div>
     <ButtonList
       :choreographyPdf="choreographyPdf"
-      :choreographyLink="choreographyLink"
+      :choreographyVideo="choreographyVideo"
       :songLink="songLink"
     />
   </div>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  props: ["name", "choreographyPdf", "choreographyLink", "songLink"],
+  props: ["name", "choreographyPdf", "choreographyVideo", "songLink"],
   components: {
     ButtonList: () => import("components/shared/button/ButtonList")
   }
