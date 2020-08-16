@@ -10,10 +10,12 @@
 </template>
 
 <script>
+import ButtonList from "components/shared/button/ButtonList";
+
 export default {
   props: ["name", "choreographyPdf", "choreographyVideo", "songLink"],
   components: {
-    ButtonList: () => import("components/shared/button/ButtonList")
+    ButtonList
   }
 };
 </script>

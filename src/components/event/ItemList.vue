@@ -1,28 +1,30 @@
 <template>
   <div>
-    <!-- <q-infinite-scroll @load="onLoad" :offset="100"> -->
+    <!-- <q-table :data="events" /> -->
     <div v-for="event in events" :key="event._id">
-      <q-separator />
       <Item v-bind="event" />
     </div>
-    <!-- </q-infinite-scroll> -->
     <q-separator />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
+
+import Item from "components/event/Item";
 
 export default {
   components: {
-    Item: () => import("components/event/Item")
+    Item
   },
   beforeMount() {
-    this.$store.dispatch("event/initEvents");
+    this.$store.dispatch("event/fetchEvents");
   },
-  computed: mapState({
-    events: state => state.event.events
-  }),
+  computed: {
+    ...mapGetters({
+      events: "event/events"
+    })
+  },
   methods: {
     async onLoad(index, done) {
       await this.$store.dispatch("event/fetchMoreEvents");

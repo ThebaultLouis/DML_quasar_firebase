@@ -5,15 +5,14 @@
     :href="link"
     target="_blank"
     flat
-    color="red-5"
-    :icon="icon"
-    size="25px"
+    :color="color"
+    :label="label"
   />
 </template>
 
 <script>
 export default {
-  props: ["link", "icon"]
+  props: ["link", "color", "label"]
 };
 </script>
 

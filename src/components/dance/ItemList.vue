@@ -1,20 +1,18 @@
 <template>
   <div>
-    <div v-if="isFiltering">
-      <div v-for="dance in filteredDances" :key="dance._id">
-        <q-separator />
-        <Item v-bind="dance" />
-      </div>
-      <q-separator />
-    </div>
-    <div v-else>
-      <q-infinite-scroll @load="onLoad" :offset="250">
-        <div v-for="dance in fetchedDances" :key="dance._id">
+    <div>
+      <div v-if="dances.length">
+        <div v-for="dance in dances" :key="dance.id">
           <q-separator />
           <Item v-bind="dance" />
         </div>
-      </q-infinite-scroll>
-      <q-separator />
+        <q-separator />
+      </div>
+      <div v-else>
+        <div class="row justify-center">
+          <q-spinner color="brown" size="10em" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -22,28 +20,18 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 
+import Item from "components/dance/Item";
+
 export default {
   components: {
-    Item: () => import("components/dance/Item")
+    Item
   },
   beforeMount() {
-    // if (this.fetchedDances.length) return;
-    // this.$store.dispatch("dance/fetchDances");
+    if (this.dances.length) return;
+    this.$store.dispatch("dance/fetchDances");
   },
   computed: {
-    ...mapState({
-      fetchedDances: state => state.dance.dances,
-      filteredDances: state => state.dance.filteredDances,
-      isFiltering: state => state.dance.isFiltering
-    }),
-    ...mapGetters({ isFiltering: "dance/isFiltering" })
-  },
-
-  methods: {
-    async onLoad(index, done) {
-      await this.$store.dispatch("dance/fetchDances");
-      done();
-    }
+    ...mapGetters({ dances: "dance/dances" })
   }
 };
 </script>

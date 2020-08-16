@@ -15,10 +15,11 @@
 </template>
 
 <script>
+import Button from "./Button";
 export default {
   props: ["choreographyPdf", "choreographyVideo", "songLink"],
   components: {
-    Button: () => import("components/shared/button/Button")
+    Button
   }
 };
 </script>

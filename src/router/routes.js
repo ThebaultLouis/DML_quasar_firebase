@@ -1,3 +1,6 @@
+import Home from "pages/Home.vue";
+import CountryDances from "pages/country/Dances.vue";
+
 const routes = [
   {
     path: "/",
@@ -7,14 +10,14 @@ const routes = [
       {
         path: "",
         name: "Home",
-        component: () => import("pages/Home.vue")
+        component: Home
       },
       // Country
       // Dances
       {
         path: "country/dances",
         name: "CountryDances",
-        component: () => import("pages/country/Dances.vue")
+        component: CountryDances
       },
       // Courses
       {

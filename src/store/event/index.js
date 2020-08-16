@@ -1,67 +1,74 @@
-const events = [
-  {
-    _id: "5dac55a23a13d20011df9d5a",
-    city: "Saint Viaud",
-    club: "Country en Retz",
-    isAtHome: true,
-    doneOn: "2019-07-27",
-    zipcode: "44",
-    __v: 0,
-    posterPdf:
-      "https://res.cloudinary.com/dkxcax6es/image/upload/s--zDn8Pd3B--/v1576065130/dml-laille/tlytclptsthh8x7qd4z9.jpg"
-  },
-  {
-    _id: "5dac55a23a13d20011df9d5b",
-    city: "Pont Réan",
-    club: "Jo's American Car \"Route 177",
-    isAtHome: true,
-    doneOn: "2019-09-29",
-    zipcode: "35",
-    __v: 0,
-    posterPdf:
-      "https://res.cloudinary.com/dkxcax6es/image/upload/s--GkDS658t--/v1572174602/dml-laille/tglfvkvhbkzdwo2dmqil.jpg"
-  },
-  {
-    _id: "5dac55a23a13d20011df9d5c",
-    city: "Pléchatel",
-    club: "Vaincre La mucoviscidose",
-    isAtHome: true,
-    doneOn: "2019-11-09",
-    zipcode: "35",
-    __v: 0,
-    posterPdf:
-      "https://res.cloudinary.com/dkxcax6es/image/upload/s--sOdu02QE--/v1572174516/dml-laille/yp7xgqdnqp8sdqrbdvzj.pdf",
-    playlistPdf:
-      "https://res.cloudinary.com/dkxcax6es/image/upload/s--elBdcUgL--/v1572174521/dml-laille/trjzfugj3aihapyarfxh.pdf"
-  },
-  {
-    _id: "5dac55a23a13d20011df9d5d",
-    city: "Saint Pair sur mer",
-    club: "Sealand",
-    domicile: true,
-    doneOn: "2019-08-03",
-    zipcode: "50",
-    __v: 0,
-    posterPdf:
-      "https://res.cloudinary.com/dkxcax6es/image/upload/s--C1tJodJi--/v1572179707/dml-laille/yjnw4pmufyvj6teveqvc.pdf",
-    playlistPdf:
-      "https://res.cloudinary.com/dkxcax6es/image/upload/s--cRdar1Zu--/v1572175694/dml-laille/uw3rvqxid7pexc7buahi.pdf"
-  }
-];
+import { db, utils } from "../../services/firebase";
 
 export default {
   namespaced: true,
   state: {
-    events: []
+    events: [],
+    filteredEvents: [],
+    isAtHome: null,
+    date: null
   },
   mutations: {
-    initEvents(state) {
+    setEvents(state, events) {
       state.events = events;
+    },
+    setFilteredDances(state, events) {
+      state.filteredEvents = events;
+    },
+    setIsAtHome(state, isAtHome) {
+      state.isAtHome = isAtHome;
+    },
+    setDate(state, date) {
+      state.Date = date;
+    }
+  },
+  getters: {
+    isFiltering(state) {
+      return state.isAtHome != null || state.date != null;
+    },
+    events(state, getters) {
+      return getters.isFiltering ? state.filteredEvents : state.events;
     }
   },
   actions: {
-    initEvents(context) {
-      context.commit("initEvents");
+    async fetchEvents(context) {
+      if (context.state.events.length) return;
+
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = now.getMonth() > 8 ? now.getMonth() : "0" + now.getMonth();
+      var startDate = year + "-" + month;
+
+      var docs = await db
+        .collection("events")
+        .orderBy("doneOn", "asc")
+        .startAt(startDate)
+        .get();
+      var events = utils.docsIntoArray(docs);
+
+      context.commit("setEvents", events);
+    },
+    async setIsAtHome(context, isAtHome) {
+      context.commit("setIsAtHome", isAtHome);
+      context.dispatch("searchEvents");
+    },
+    async setDate(context, date) {
+      context.commit("setDate", date);
+      context.dispatch("searchEvents");
+    },
+    async searchEvents(context) {
+      var { isAtHome, date, events } = context.state;
+      isAtHome = isAtHome.value;
+
+      if (isAtHome == null && date == null) return;
+
+      if (isAtHome != null) {
+        events = events.filter(event => event.isAtHome == isAtHome);
+      }
+
+      if (date != null) events = events.filter(event => event.doneOn == date);
+
+      context.commit("setFilteredDances", events);
     }
   }
 };

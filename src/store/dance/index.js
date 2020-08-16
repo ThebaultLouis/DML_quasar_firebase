@@ -1,7 +1,5 @@
 import { db, utils } from "../../services/firebase";
 
-const DANCES_PER_FETCHING = 10;
-
 export default {
   namespaced: true,
   state: {
@@ -11,7 +9,7 @@ export default {
   },
   mutations: {
     setDances(state, dances) {
-      state.dances.push(...dances);
+      state.dances = dances;
     },
     setSearchName(state, name) {
       state.searchName = name;
@@ -27,34 +25,28 @@ export default {
     isFiltering(state) {
       return state.searchName != "";
     },
-    lastFetchedDanceName(state) {
-      if (!state.dances.length) return "";
-      return state.dances[state.dances.length - 1].name;
+    dances(state, getters) {
+      return getters.isFiltering ? state.filteredDances : state.dances;
     }
   },
   actions: {
     async fetchDances(context) {
-      console.log(context.getters.lastFetchedDanceName);
+      if (context.state.dances.length) return;
       var docs = await db
         .collection("dances")
         .orderBy("name")
-        .startAfter(context.getters.lastFetchedDanceName)
-        .limit(DANCES_PER_FETCHING)
         .get();
       var dances = utils.docsIntoArray(docs);
 
       context.commit("setDances", dances);
     },
     async searchDances(context, searchName) {
-      searchName = searchName.charAt(0).toUpperCase() + searchName.slice(1);
+      // searchName = searchName.charAt(0).toUpperCase() + searchName.slice(1);
       context.commit("setSearchName", searchName);
-      var docs = await db
-        .collection("dances")
-        .orderBy("name")
-        .startAt(searchName)
-        .endAt(searchName + "\uf8ff")
-        .get();
-      var dances = utils.docsIntoArray(docs);
+      searchName = searchName.toLowerCase();
+      var dances = context.state.dances.filter(dance =>
+        dance.name.toLowerCase().includes(searchName)
+      );
       context.commit("setFilteredDances", dances);
     }
   }

@@ -6,7 +6,7 @@
   "author": "Louis Thebault <louis.thebault.ing@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "QENV=development quasar dev",
+    "build": "quasar build && firebase deploy",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },

@@ -9,13 +9,18 @@
 </template>
 
 <script>
+import PrendreBonneNote from "components/home/PrendreBonneNote";
+import NosProgrammes from "components/home/NosProgrammes";
+import ParIciLesSorties from "components/home/ParIciLesSorties";
+import AutresStandards from "components/home/AutresStandards";
+
 export default {
   components: {
     // Logo: () => import("components/home/Logo"),
-    PrendreBonneNote: () => import("components/home/PrendreBonneNote"),
-    NosProgrammes: () => import("components/home/NosProgrammes"),
-    ParIciLesSorties: () => import("components/home/ParIciLesSorties"),
-    AutresStandards: () => import("components/home/AutresStandards")
+    PrendreBonneNote,
+    NosProgrammes,
+    ParIciLesSorties,
+    AutresStandards
   }
 };
 </script>
