@@ -18,6 +18,11 @@ export default {
   data: () => ({
     sections: [
       {
+        title: "Danses Country",
+        createLinkName: "AdminCreateDance",
+        listLinkName: "AdminDances"
+      },
+      {
         title: "Manifestations",
         createLinkName: "AdminCreateEvent",
         listLinkName: "AdminEvents"

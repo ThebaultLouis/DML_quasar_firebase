@@ -8,24 +8,28 @@
         </div>
         <div class="text-caption text-grey">{{ address }}</div>
       </q-card-section>
-      <q-card-actions>
-        <q-space />
+      <q-card-actions vertical>
+        <!-- <q-space /> -->
         <XSButton :link="posterPdf" label="Affiche" color="brown" />
         <XSButton :link="playlistPdf" label="Playlist" color="amber-8" />
       </q-card-actions>
-      <q-card-actions v-if="admin">
-        <q-space />
-        <XSButton :link="posterPdf" label="Supprimer" color="red" />
-        <XSButton :link="posterPdf" label="Modifier" color="amber-8" />
-      </q-card-actions>
+      <q-separator />
+      <MobileAdminActions
+        v-if="admin"
+        :id="id"
+        updateLinkName="AdminUpdateEvent"
+        deleteActioName="dance/deleteEvent"
+      />
     </q-card>
   </div>
 </template>
 
 <script>
 import XSButton from "components/shared/button/XSButton";
+import MobileAdminActions from "components/shared/admin/MobileActions";
 export default {
   props: [
+    "id",
     "admin",
     "doneOn",
     "city",
@@ -36,7 +40,8 @@ export default {
     "posterPdf"
   ],
   components: {
-    XSButton
+    XSButton,
+    MobileAdminActions
   },
   computed: {
     address() {

@@ -1,3 +1,8 @@
+// Admin Route
+import adminRoutes from "./admin";
+console.log(adminRoutes);
+
+// Components
 import Home from "pages/Home.vue";
 import CountryDances from "pages/country/Dances.vue";
 
@@ -50,43 +55,7 @@ const routes = [
         meta: {
           requiresAuth: true
         },
-        children: [
-          {
-            path: "",
-            name: "Dashboard",
-            component: () => import("pages/admin/Dashboard.vue")
-          },
-          {
-            path: "events",
-            name: "AdminEvents",
-            component: () => import("pages/admin/event/Events.vue")
-          },
-          {
-            path: "event",
-            name: "AdminCreateEvent",
-            component: () => import("pages/admin/event/Form.vue")
-          },
-          {
-            path: "event/:id",
-            name: "AdminUpdateEvent",
-            component: () => import("pages/admin/event/Form.vue")
-          },
-          {
-            path: "albums",
-            name: "AdminAlbums",
-            component: () => import("pages/admin/album/Albums.vue")
-          },
-          {
-            path: "album",
-            name: "AdminCreateAlbum",
-            component: () => import("pages/admin/album/Form.vue")
-          },
-          {
-            path: "album/:id",
-            name: "AdminUpdateAlbum",
-            component: () => import("pages/admin/album/Form.vue")
-          }
-        ]
+        children: adminRoutes
       }
     ]
   },

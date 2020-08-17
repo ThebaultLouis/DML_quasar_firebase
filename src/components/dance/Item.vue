@@ -1,49 +1,23 @@
 <template>
   <div>
-    <div class="gt-xs row items-center">
-      <div class="col text-h6 q-ml-sm">{{ name }}</div>
-      <ButtonList
-        :choreographyPdf="choreographyPdf"
-        :choreographyVideo="choreographyVideo"
-        :songLink="songLink"
-      />
+    <div class="gt-xs">
+      <DesktopItem v-bind="dance" :admin="admin" />
     </div>
     <div class="lt-sm">
-      <q-card class="q-ma-sm">
-        <q-card-section>
-          <div class="text-h5 q-mt-sm q-mb-xs">{{ name }}</div>
-        </q-card-section>
-        <q-card-actions vertical>
-          <XSButton
-            :link="choreographyPdf"
-            color="brown"
-            label="Pdf de la chorégraphie"
-          />
-          <XSButton
-            :link="choreographyVideo"
-            color="amber-8"
-            label="Vidéo de la chorégraphie"
-          />
-          <XSButton
-            :link="songLink"
-            color="grey-7"
-            label="Musique de la chorégraphie"
-          />
-        </q-card-actions>
-      </q-card>
+      <MobileItem v-bind="dance" :admin="admin" />
     </div>
   </div>
 </template>
 
 <script>
-import XSButton from "components/shared/button/XSButton";
-import ButtonList from "components/shared/button/ButtonList";
+import DesktopItem from "./responsive/DesktopItem";
+import MobileItem from "./responsive/MobileItem";
 
 export default {
-  props: ["name", "choreographyPdf", "choreographyVideo", "songLink"],
+  props: ["dance", "admin"],
   components: {
-    XSButton,
-    ButtonList
+    DesktopItem,
+    MobileItem
   }
 };
 </script>

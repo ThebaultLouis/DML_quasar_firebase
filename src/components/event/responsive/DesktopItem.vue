@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- gt-xs -->
-    <q-separator />
     <div class="row items-center q-px-sm" style="min-height:70px">
-      <div class="col-12 col-sm-8">
-        <div class="row items-cener q-gutter-x-sm ">
+      <q-separator />
+      <div class="col-8">
+        <div class="row items-center q-gutter-x-sm ">
           <div class="col-3 text-subtitle2 ">
             {{ doneOn }}
           </div>
@@ -20,7 +20,7 @@
         </div>
       </div>
       <q-space />
-      <div class="col-12 col-sm-4">
+      <div class="col-4">
         <div class="row items-center">
           <div class="col text-center">
             <Button :link="posterPdf" icon="image" />
@@ -28,16 +28,12 @@
           <div class="col text-center">
             <Button :link="playlistPdf" icon="queue_music" />
           </div>
-          <div v-if="admin" class="col text-center">
-            <q-btn flat size="25px" color="red" icon="close" />
-          </div>
-          <div v-if="admin" class="col text-center">
-            <q-btn
-              flat
-              size="25px"
-              color="amber-8"
-              icon="east"
-              :to="{ name: 'AdminUpdateEvent', params: { id: id } }"
+          <q-separator v-if="admin" vertical />
+          <div class="col" v-if="admin">
+            <DesktopAdminActions
+              :id="id"
+              updateLinkName="AdminUpdateEvent"
+              deleteActioName="dance/deleteEvent"
             />
           </div>
         </div>
@@ -48,6 +44,7 @@
 
 <script>
 import Button from "components/shared/button/Button";
+import DesktopAdminActions from "components/shared/admin/DesktopActions";
 export default {
   props: [
     "id",
@@ -61,7 +58,8 @@ export default {
     "posterPdf"
   ],
   components: {
-    Button
+    Button,
+    DesktopAdminActions
   },
   computed: {
     address() {

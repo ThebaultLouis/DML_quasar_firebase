@@ -1,15 +1,13 @@
 <template>
-  <div class="col-6">
-    <div class="row">
-      <div class="col-4">
-        <Button :link="choreographyPdf" icon="picture_as_pdf" />
-      </div>
-      <div class="col-4">
-        <Button :link="choreographyVideo" icon="music_video" />
-      </div>
-      <div class="col-4">
-        <Button :link="songLink" icon="music_note" />
-      </div>
+  <div class="row">
+    <div class="col">
+      <Button :link="choreographyPdf" icon="picture_as_pdf" />
+    </div>
+    <div class="col">
+      <Button :link="choreographyVideo" icon="music_video" />
+    </div>
+    <div class="col">
+      <Button :link="songLink" icon="music_note" />
     </div>
   </div>
 </template>
