@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <!-- <q-infinite-scroll @load="onLoad" :offset="100"> -->
-    <div v-for="album in albums" :key="album._id">
-      <Item v-bind="album" class="q-my-md" />
+  <div class="row justify-center q-gutter-sm">
+    <div class="col-12 col-sm-6" v-for="album in albums" :key="album._id">
+      <Item v-bind="album" :admin="admin" class="q-my-md" />
     </div>
-    <!-- </q-infinite-scroll> -->
   </div>
 </template>
 
@@ -12,11 +10,14 @@
 import { mapState } from "vuex";
 
 export default {
+  props: ["admin"],
   components: {
     Item: () => import("components/album/Item")
   },
   beforeMount() {
-    this.$store.dispatch("album/initAlbums");
+    console.log(this.admin);
+    if (this.albums.length) return;
+    this.$store.dispatch("album/fetchAlbums");
   },
   computed: mapState({
     albums: state => state.album.albums

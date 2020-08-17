@@ -1,6 +1,7 @@
 <template>
   <div>
     <q-separator />
+    <!-- gt-xs -->
     <div class="gt-xs row items-center q-px-sm" style="min-height:70px">
       <div class="col-12 col-sm-8">
         <div class="row items-cener q-gutter-x-sm ">
@@ -34,6 +35,7 @@
         </div>
       </div>
     </div>
+    <!-- lt-sm -->
     <div class="lt-sm">
       <q-card class="q-ma-sm">
         <q-card-section>
@@ -45,8 +47,8 @@
         </q-card-section>
         <q-card-actions>
           <q-space />
-          <SmallButton :link="posterPdf" label="Affiche" color="brown" />
-          <SmallButton :link="playlistPdf" label="Playlist" color="amber-8" />
+          <XSButton :link="posterPdf" label="Affiche" color="brown" />
+          <XSButton :link="playlistPdf" label="Playlist" color="amber-8" />
         </q-card-actions>
       </q-card>
     </div>
@@ -54,7 +56,7 @@
 </template>
 
 <script>
-import SmallButton from "./Button";
+import XSButton from "components/shared/button/XSButton";
 import Button from "components/shared/button/Button";
 export default {
   props: [
@@ -68,7 +70,7 @@ export default {
   ],
   components: {
     Button,
-    SmallButton
+    XSButton
   },
   computed: {
     address() {

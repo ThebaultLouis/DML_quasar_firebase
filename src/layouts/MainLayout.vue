@@ -78,6 +78,11 @@ const linksData = [
     title: "Album photo",
     icon: "photo",
     linkName: "Albums"
+  },
+  {
+    title: "Admin",
+    icon: "person",
+    linkName: "Dashboard"
   }
 ];
 

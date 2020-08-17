@@ -55,6 +55,21 @@ const routes = [
             path: "",
             name: "Dashboard",
             component: () => import("pages/admin/Dashboard.vue")
+          },
+          {
+            path: "albums",
+            name: "AdminAlbums",
+            component: () => import("pages/admin/album/Albums.vue")
+          },
+          {
+            path: "album",
+            name: "AdminCreateAlbum",
+            component: () => import("pages/admin/album/Form.vue")
+          },
+          {
+            path: "album/:id",
+            name: "AdminUpdateAlbum",
+            component: () => import("pages/admin/album/Form.vue")
           }
         ]
       }

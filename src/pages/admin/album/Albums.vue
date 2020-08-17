@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Sections />
+    <Albums :admin="true" />
   </div>
 </template>
 
 <script>
 export default {
   components: {
-    Sections: () => import("components/admin/dashboard/Sections")
+    Albums: () => import("components/album/ItemList")
   }
 };
 </script>
