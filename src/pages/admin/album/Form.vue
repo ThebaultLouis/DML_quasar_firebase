@@ -43,11 +43,9 @@
       </div>
     </div>
     <div class="row justify-center q-mt-sm">
-      <div class="col-10 col-sm-4 text-center">
-        <q-btn color="brown">
-          Ajouter l'album
-        </q-btn>
-      </div>
+      <q-btn color="brown">
+        Ajouter l'album
+      </q-btn>
     </div>
   </div>
 </template>

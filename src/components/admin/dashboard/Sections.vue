@@ -1,7 +1,11 @@
 <template>
-  <div class="row justify-center q-gutter-sm q-mt-sm">
-    <div class="col-10 col-sm-6">
-      <Section />
+  <div class="row justify-center q-gutter-md q-mt-sm">
+    <div
+      v-for="section in sections"
+      :key="section.title"
+      class="col-10 col-sm-6"
+    >
+      <Section v-bind="section" />
     </div>
   </div>
 </template>
@@ -12,7 +16,18 @@ export default {
     Section: () => import("./Section")
   },
   data: () => ({
-    links: []
+    sections: [
+      {
+        title: "Manifestations",
+        createLinkName: "AdminCreateEvent",
+        listLinkName: "AdminEvents"
+      },
+      {
+        title: "Album",
+        createLinkName: "AdminCreateAlbum",
+        listLinkName: "AdminAlbums"
+      }
+    ]
   })
 };
 </script>

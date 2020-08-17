@@ -57,10 +57,7 @@ export default {
   data: () => ({
     slide: 0,
     fullscreen: false
-  }),
-  beforeMount() {
-    console.log(this.admin);
-  }
+  })
 };
 </script>
 

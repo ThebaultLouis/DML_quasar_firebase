@@ -57,6 +57,21 @@ const routes = [
             component: () => import("pages/admin/Dashboard.vue")
           },
           {
+            path: "events",
+            name: "AdminEvents",
+            component: () => import("pages/admin/event/Events.vue")
+          },
+          {
+            path: "event",
+            name: "AdminCreateEvent",
+            component: () => import("pages/admin/event/Form.vue")
+          },
+          {
+            path: "event/:id",
+            name: "AdminUpdateEvent",
+            component: () => import("pages/admin/event/Form.vue")
+          },
+          {
             path: "albums",
             name: "AdminAlbums",
             component: () => import("pages/admin/album/Albums.vue")

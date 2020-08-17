@@ -1,27 +1,31 @@
 <template>
   <q-card>
     <q-card-section>
-      <div class="text-h5 q-mt-sm q-mb-xs">Albums</div>
+      <div class="text-h5 q-mt-sm q-mb-xs">
+        {{ title }}
+      </div>
     </q-card-section>
-    <q-card-actions vertical="">
+    <q-card-actions vertical>
       <q-btn
-        :to="{ name: 'AdminCreateAlbum' }"
+        :to="{ name: createLinkName }"
         flat
         color="amber-8"
-        label="Ajouter un nouvel album"
+        label="Ajouter"
       />
       <q-btn
-        :to="{ name: 'AdminAlbums' }"
+        :to="{ name: listLinkName }"
         flat
         color="brown"
-        label="Voir les albums"
+        label="Consulter"
       />
     </q-card-actions>
   </q-card>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["title", "createLinkName", "listLinkName"]
+};
 </script>
 
 <style></style>

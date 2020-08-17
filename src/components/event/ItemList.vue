@@ -2,7 +2,7 @@
   <div>
     <!-- <q-table :data="events" /> -->
     <div v-for="event in events" :key="event._id">
-      <Item v-bind="event" />
+      <Item :event="event" :admin="admin" />
     </div>
     <q-separator />
   </div>
@@ -14,6 +14,7 @@ import { mapGetters } from "vuex";
 import Item from "components/event/Item";
 
 export default {
+  props: ["admin"],
   components: {
     Item
   },
