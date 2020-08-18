@@ -33,7 +33,7 @@
             <DesktopAdminActions
               :id="id"
               updateLinkName="AdminUpdateEvent"
-              deleteActioName="dance/deleteEvent"
+              deleteActionName="dance/deleteEvent"
             />
           </div>
         </div>

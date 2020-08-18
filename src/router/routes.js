@@ -1,6 +1,5 @@
 // Admin Route
 import adminRoutes from "./admin";
-console.log(adminRoutes);
 
 // Components
 import Home from "pages/Home.vue";
@@ -42,11 +41,27 @@ const routes = [
         name: "Albums",
         component: () => import("pages/Albums.vue")
       },
+      // Auth
       // Signin
       {
         path: "signin",
         name: "Signin",
-        component: () => import("pages/admin/Signin.vue")
+        component: () => import("pages/auth/Signin.vue")
+      },
+      {
+        path: "confirmPasswordChange",
+        name: "ConfirmPasswordChange",
+        component: () => import("pages/auth/ConfirmPasswordChange.vue")
+      },
+      {
+        path: "confirmLostPasswordCode",
+        name: "ConfirmLostPasswordCode",
+        component: () => import("pages/auth/ConfirmLostPasswordCode.vue")
+      },
+      {
+        path: "changePassword",
+        name: "ChangePassword",
+        component: () => import("pages/auth/ChangePassword.vue")
       },
       // Admin
       {

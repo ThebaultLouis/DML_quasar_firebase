@@ -18,7 +18,7 @@
         <DesktopAdminActions
           :id="id"
           updateLinkName="AdminUpdateDance"
-          deleteActioName="dance/deleteDance"
+          deleteActionName="dance/deleteDance"
         />
       </div>
     </div>

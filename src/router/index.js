@@ -1,9 +1,10 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import { utils } from "../services/firebase";
 
-import routes from './routes'
+import routes from "./routes";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 /*
  * If not building with SSR mode, you can
@@ -14,8 +15,8 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default function (/* { store, ssrContext } */) {
-  const Router = new VueRouter({
+export default function(/* { store, ssrContext } */) {
+  var Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
 
@@ -24,7 +25,22 @@ export default function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
-  })
+  });
 
-  return Router
+  Router.beforeEach((to, from, next) => {
+    if (
+      to.matched.some(record => record.meta.requiresAuth) &&
+      !utils.isAuth()
+    ) {
+      next({
+        path: "/signin"
+      });
+    } else if (to.name == "Signin" && utils.isAuth()) {
+      next({ path: "/admin" });
+    } else {
+      next();
+    }
+  });
+
+  return Router;
 }

@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 // import example from './module-example'
+import auth from "./auth";
 import album from "./album";
 import classe from "./classe";
 import dance from "./dance";
@@ -22,6 +23,7 @@ export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       // example
+      auth,
       album,
       classe,
       dance,

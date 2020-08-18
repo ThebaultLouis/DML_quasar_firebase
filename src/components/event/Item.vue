@@ -6,7 +6,7 @@
     </div>
     <!-- lt-sm -->
     <div class="lt-sm">
-      <MobileItem v-bind="event" :admin="admin" />
+      <MobileItem class="q-my-md" v-bind="event" :admin="admin" />
     </div>
   </div>
 </template>

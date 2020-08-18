@@ -1,7 +1,13 @@
 <template>
   <div class="row justify-center">
     <div class="col text-center">
-      <q-btn flat size="25px" color="red" icon="close" />
+      <q-btn
+        @click="$store.dispatch(deleteActionName, id)"
+        flat
+        size="25px"
+        color="red"
+        icon="close"
+      />
     </div>
     <div class="col text-center">
       <q-btn

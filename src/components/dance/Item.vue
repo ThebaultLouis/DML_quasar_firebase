@@ -4,7 +4,7 @@
       <DesktopItem v-bind="dance" :admin="admin" />
     </div>
     <div class="lt-sm">
-      <MobileItem v-bind="dance" :admin="admin" />
+      <MobileItem class="q-my-md" v-bind="dance" :admin="admin" />
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <q-btn :to="{ name: updateLinkName, params: { id: id } }" flat color="red">
       Modifier
     </q-btn>
-    <q-btn flat color="red">
+    <q-btn @click="$store.dispatch(deleteActionName, id)" flat color="red">
       Supprimer
     </q-btn>
   </q-card-actions>

@@ -18,10 +18,16 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // utils
-const db = firebase.firestore();
 const auth = firebase.auth();
+const db = firebase.firestore();
+// const storage = firebase.storage();
 
 const utils = {
+  // Auth
+  isAuth: function() {
+    return auth.currentUser != null;
+  },
+  // DB
   docsIntoArray: function(docs) {
     let array = [];
     docs.forEach(doc => {
@@ -31,7 +37,9 @@ const utils = {
       array.push(item);
     });
     return array;
-  }
+  },
+  // Storage
+  uploadFileAndGetSecureURL(file) {}
 };
 
 // export utils/refs

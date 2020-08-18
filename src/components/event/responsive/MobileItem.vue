@@ -18,7 +18,7 @@
         v-if="admin"
         :id="id"
         updateLinkName="AdminUpdateEvent"
-        deleteActioName="dance/deleteEvent"
+        deleteActionName="dance/deleteEvent"
       />
     </q-card>
   </div>

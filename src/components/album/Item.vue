@@ -1,5 +1,5 @@
 <template>
-  <q-card>
+  <q-card class="q-ma-sm">
     <q-item>
       <q-item-section>
         <q-item-label>{{ name }}</q-item-label>

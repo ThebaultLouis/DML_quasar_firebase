@@ -80,7 +80,11 @@ module.exports = function(/* ctx */) {
       iconSet: "material-icons", // Quasar icon set
       extras: ["fontawesome-v5"],
       lang: "en-us", // Quasar language pack
-      config: {},
+      config: {
+        brand: {
+          primary: "brown"
+        }
+      },
 
       // Possible values for "importStrategy":
       // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives
@@ -95,7 +99,7 @@ module.exports = function(/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ["Notify"]
     },
 
     // animations: 'all', // --- includes all animations
