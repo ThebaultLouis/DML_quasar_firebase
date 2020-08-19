@@ -1,5 +1,5 @@
 <template>
-  <q-input filled color="brown" label="Date" v-model="date" mask="date">
+  <q-input filled color="brown" label="Date" mask="date" v-model="value">
     <template v-slot:append>
       <q-icon name="event" class="cursor-pointer">
         <q-popup-proxy
@@ -9,7 +9,7 @@
         >
           <q-date
             color="brown"
-            v-model="date"
+            v-model="value"
             @input="() => $refs.qDateProxy.hide()"
           />
         </q-popup-proxy>
@@ -21,10 +21,21 @@
 <script>
 export default {
   props: ["date"],
-  model: {
-    prop: "date",
-    event: "change"
+  data: () => ({
+    value: null
+  }),
+  beforeMount() {
+    this.value = this.date;
+  },
+  watch: {
+    value() {
+      this.$emit("input", this.value);
+    }
   }
+  // model: {
+  //   prop: "date",
+  //   event: "input"
+  // }
 };
 </script>
 

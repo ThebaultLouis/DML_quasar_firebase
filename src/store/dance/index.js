@@ -6,6 +6,7 @@ import { notification } from "../../services/notification";
 export default {
   namespaced: true,
   state: {
+    fetchedDances: [],
     dances: [],
     filteredDances: [],
     searchName: ""
@@ -72,7 +73,7 @@ export default {
           .doc(dance.id)
           .set(dance);
         notification.success(
-          "La danse bien été " + (isUpdating ? "modifiée" : "créée")
+          "La danse a bien été " + (isUpdating ? "modifiée" : "créée")
         );
       } catch (e) {
         notification.error("La danse n'a pas pu être ajoutée ou modifiée");

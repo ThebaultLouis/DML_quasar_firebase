@@ -1,4 +1,7 @@
+import { v4 as uuidv4 } from "uuid";
 import { db, utils } from "../../services/firebase";
+import router from "../../router";
+import { notification } from "../../services/notification";
 
 export default {
   namespaced: true,
@@ -11,6 +14,9 @@ export default {
   mutations: {
     setEvents(state, events) {
       state.events = events;
+    },
+    removeEvent(state, id) {
+      state.events = state.events.filter(event => event.id != id);
     },
     setFilteredDances(state, events) {
       state.filteredEvents = events;
@@ -69,6 +75,45 @@ export default {
       if (date != null) events = events.filter(event => event.doneOn == date);
 
       context.commit("setFilteredDances", events);
+    },
+    async createEvent(
+      context,
+      { isUpdating, event, playlistPdfFile, posterPdfFile }
+    ) {
+      // Uploading file
+      // TODO
+
+      if (!isUpdating) {
+        event.id = uuidv4();
+      }
+      try {
+        var response = await db
+          .collection("events")
+          .doc(event.id)
+          .set(event);
+        notification.success(
+          "La manifestation a bien été " + (isUpdating ? "modifiée" : "créée")
+        );
+      } catch (e) {
+        notification.error(
+          "La manifestation n'a pas pu être ajoutée ou modifiée"
+        );
+      }
+
+      if (isUpdating) {
+        var i = context.state.events.findIndex(event => event.id == event.id);
+        context.state.events[i] = event;
+      } else {
+        context.state.events.unshift(event);
+      }
+      router().go(-1);
+    },
+    async deleteEvent(context, id) {
+      await db
+        .collection("events")
+        .doc(id)
+        .delete();
+      context.commit("removeEvent", id);
     }
   }
 };

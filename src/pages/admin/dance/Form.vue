@@ -81,7 +81,6 @@ export default {
         dance: this.dance,
         choreographyPdfFile: this.choreographyPdfFile
       });
-      this.isLoading = false;
     },
     reset() {
       this.dance = {

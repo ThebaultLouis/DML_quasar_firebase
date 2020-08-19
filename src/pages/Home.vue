@@ -1,10 +1,12 @@
 <template>
   <q-page>
     <!-- <Logo /> -->
-    <PrendreBonneNote />
-    <NosProgrammes />
-    <ParIciLesSorties />
-    <AutresStandards />
+    <q-infinite-scroll @load="onLoad" :offset="250">
+      <PrendreBonneNote v-if="prendreBonneNoteIsVisible" />
+      <NosProgrammes v-if="nosProgrammesIsVisible" />
+      <ParIciLesSorties v-if="parIciLesSortiesIsVisible" />
+      <AutresStandards v-if="autresStandardsIsVisible" />
+    </q-infinite-scroll>
   </q-page>
 </template>
 
@@ -21,6 +23,32 @@ export default {
     NosProgrammes,
     ParIciLesSorties,
     AutresStandards
+  },
+  data: () => ({
+    prendreBonneNoteIsVisible: false,
+    nosProgrammesIsVisible: false,
+    parIciLesSortiesIsVisible: false,
+    autresStandardsIsVisible: false
+  }),
+  methods: {
+    onLoad(index, done) {
+      switch (index) {
+        case 1:
+          this.prendreBonneNoteIsVisible = true;
+          break;
+        case 2:
+          this.nosProgrammesIsVisible = true;
+          break;
+        case 3:
+          this.parIciLesSortiesIsVisible = true;
+          break;
+        case 4:
+          this.autresStandardsIsVisible = true;
+          break;
+        default:
+      }
+      done();
+    }
   }
 };
 </script>

@@ -1,13 +1,19 @@
 <template>
-  <q-card class="q-ma-sm">
+  <q-card v-if="!isDestroyed" class="q-ma-sm">
     <q-item>
       <q-item-section>
         <q-item-label>{{ name }}</q-item-label>
         <q-item-label caption>{{ doneOn }}</q-item-label>
       </q-item-section>
       <q-item-section v-if="admin">
-        <div class="row justify-end">
-          <q-btn size="20px" flat color="red" icon="close" />
+        <div @click="deleteAlbum" class="row justify-end">
+          <q-btn
+            :loading="isLoading"
+            size="20px"
+            flat
+            color="red"
+            icon="close"
+          />
           <!-- <q-btn size="20px" flat color="amber-8" icon="east" /> -->
         </div>
       </q-item-section>
@@ -53,11 +59,21 @@
 
 <script>
 export default {
-  props: ["name", "doneOn", "photos", "admin"],
+  props: ["id", "name", "doneOn", "photos", "admin"],
   data: () => ({
     slide: 0,
-    fullscreen: false
-  })
+    fullscreen: false,
+    isLoading: false,
+    isDestroyed: false
+  }),
+  methods: {
+    async deleteAlbum() {
+      this.isLoading = true;
+      await this.$store.dispatch("album/deleteAlbum", this.id);
+      this.isDestroyed = true;
+      // this.isLoading = false
+    }
+  }
 };
 </script>
 
