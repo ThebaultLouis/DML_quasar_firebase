@@ -69,9 +69,8 @@ export default {
     if (!id) return;
 
     this.isUpdating = true;
-    this.dance = {
-      ...this.$store.state.dance.dances.find(dance => dance.id == id)
-    };
+    console.log(this.$store.getters);
+    this.dance = this.$store.getters["dance/dance"](id);
   },
   methods: {
     async onSubmit() {

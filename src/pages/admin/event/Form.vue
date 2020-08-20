@@ -63,9 +63,7 @@ export default {
     if (!id) return;
 
     this.isUpdating = true;
-    this.event = {
-      ...this.$store.state.event.events.find(event => event.id == id)
-    };
+    this.event = this.$store.getters["event/event"](id);
   },
 
   methods: {

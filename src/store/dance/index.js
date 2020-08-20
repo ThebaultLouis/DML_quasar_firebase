@@ -7,24 +7,23 @@ export default {
   namespaced: true,
   state: {
     fetchedDances: [],
-    dances: [],
     filteredDances: [],
     searchName: ""
   },
   mutations: {
-    setDances(state, dances) {
-      state.dances = dances;
+    setFetchedDances(state, dances) {
+      state.fetchedDances = dances;
     },
     addDance(state, { dance, isUpdating }) {
       if (isUpdating) {
-        var i = state.dances.findIndex(d => d.id == dance.id);
-        state.dances[i] = dance;
+        var i = state.fetchedDances.findIndex(d => d.id == dance.id);
+        state.fetchedDances[i] = dance;
       } else {
-        state.dances.unshift(dance);
+        state.fetchedDances.unshift(dance);
       }
     },
     removeDance(state, id) {
-      state.dances = state.dances.filter(dance => dance.id != id);
+      state.dances = state.fetchedDances.filter(dance => dance.id != id);
     },
     setSearchName(state, name) {
       state.searchName = name;
@@ -41,25 +40,30 @@ export default {
       return state.searchName != "";
     },
     dances(state, getters) {
-      return getters.isFiltering ? state.filteredDances : state.dances;
+      return getters.isFiltering ? state.filteredDances : state.fetchedDances;
+    },
+    dance: state => id => {
+      return {
+        ...state.fetchedDances.find(dance => dance.id == id)
+      };
     }
   },
   actions: {
     async fetchDances(context) {
-      if (context.state.dances.length) return;
+      if (context.state.fetchedDances.length) return;
       var docs = await db
         .collection("dances")
         .orderBy("name")
         .get();
       var dances = utils.docsIntoArray(docs);
 
-      context.commit("setDances", dances);
+      context.commit("setFetchedDances", dances);
     },
     async searchDances(context, searchName) {
       // searchName = searchName.charAt(0).toUpperCase() + searchName.slice(1);
       context.commit("setSearchName", searchName);
       searchName = searchName.toLowerCase();
-      var dances = context.state.dances.filter(dance =>
+      var dances = context.state.fetchedDances.filter(dance =>
         dance.name.toLowerCase().includes(searchName)
       );
       context.commit("setFilteredDances", dances);

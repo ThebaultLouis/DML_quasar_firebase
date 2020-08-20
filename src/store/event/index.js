@@ -6,25 +6,24 @@ import { notification } from "../../services/notification";
 export default {
   namespaced: true,
   state: {
-    events: [],
+    fetchedEvents: [],
     filteredEvents: [],
-    isAtHome: null,
-    date: null
+    isAtHome: null
   },
   mutations: {
-    setEvents(state, events) {
-      state.events = events;
+    setFetchedEvents(state, events) {
+      state.fetchedEvents = events;
     },
     addEvent(state, { event, isUpdating }) {
       if (isUpdating) {
-        var i = state.events.findIndex(d => d.id == event.id);
-        state.events[i] = event;
+        var i = state.fetchedEvents.findIndex(d => d.id == event.id);
+        state.fetchedEvents[i] = event;
       } else {
-        state.events.unshift(event);
+        state.fetchedEvents.unshift(event);
       }
     },
     removeEvent(state, id) {
-      state.events = state.events.filter(event => event.id != id);
+      state.fetchedEvents = state.fetchedEvents.filter(event => event.id != id);
     },
     setFilteredDances(state, events) {
       state.filteredEvents = events;
@@ -37,16 +36,21 @@ export default {
     }
   },
   getters: {
+    events(state, getters) {
+      return getters.isFiltering ? state.filteredEvents : state.fetchedEvents;
+    },
+    event: state => id => {
+      return {
+        ...state.fetchedEvents.find(event => event.id == id)
+      };
+    },
     isFiltering(state) {
       return state.isAtHome != null || state.date != null;
-    },
-    events(state, getters) {
-      return getters.isFiltering ? state.filteredEvents : state.events;
     }
   },
   actions: {
     async fetchEvents(context) {
-      if (context.state.events.length) return;
+      if (context.state.fetchedEvents.length) return;
 
       var now = new Date();
       var year = now.getFullYear();
@@ -60,29 +64,21 @@ export default {
         .get();
       var events = utils.docsIntoArray(docs);
 
-      context.commit("setEvents", events);
+      context.commit("setFetchedEvents", events);
     },
     async setIsAtHome(context, isAtHome) {
       context.commit("setIsAtHome", isAtHome);
       context.dispatch("searchEvents");
     },
-    async setDate(context, date) {
-      context.commit("setDate", date);
-      context.dispatch("searchEvents");
-    },
     async searchEvents(context) {
-      var { isAtHome, date, events } = context.state;
+      var { isAtHome, fetchedEvents } = context.state;
+
+      if (isAtHome == null) return;
       isAtHome = isAtHome.value;
 
-      if (isAtHome == null && date == null) return;
+      fetchedEvents = fetchedEvents.filter(event => event.isAtHome == isAtHome);
 
-      if (isAtHome != null) {
-        events = events.filter(event => event.isAtHome == isAtHome);
-      }
-
-      if (date != null) events = events.filter(event => event.doneOn == date);
-
-      context.commit("setFilteredDances", events);
+      context.commit("setFilteredDances", fetchedEvents);
     },
     async createEvent(
       context,

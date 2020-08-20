@@ -1,25 +1,20 @@
 <template>
   <div>
-    <div>
+    <q-infinite-scroll v-if="!isFiltering" @load="onLoad" :offset="250">
       <div v-if="dances.length">
-        <!-- <q-infinite-scroll @load="onLoad" :offset="250">
-        <div v-for="dance in dances" :key="dance.id">
-          <Item :admin="admin" :dance="dance" />
-        </div>
-        <template v-slot:loading>
-          <div class="row justify-center q-my-md">
-            <q-spinner-dots color="primary" size="40px" />
-          </div>
-        </template>
-      </q-infinite-scroll> -->
         <div v-for="dance in dances" :key="dance.id">
           <Item :admin="admin" :dance="dance" />
         </div>
       </div>
-      <div v-else>
-        <div class="row justify-center">
-          <q-spinner color="brown" size="10em" />
+      <template v-slot:loading>
+        <div class="row justify-center q-my-md">
+          <q-spinner-dots color="primary" size="40px" />
         </div>
+      </template>
+    </q-infinite-scroll>
+    <div v-else>
+      <div v-for="dance in storeDances" :key="dance.id">
+        <Item :admin="admin" :dance="dance" />
       </div>
     </div>
   </div>
@@ -36,23 +31,27 @@ export default {
     Item
   },
   data: () => ({
-    // dances: []
+    dances: []
   }),
   async beforeMount() {
-    if (this.dances.length) return;
     await this.$store.dispatch("dance/fetchDances");
   },
   computed: {
-    ...mapGetters({ dances: "dance/dances" })
+    ...mapGetters({
+      storeDances: "dance/dances",
+      isFiltering: "dance/isFiltering"
+    })
   },
+
   methods: {
-    onLoad(index, done) {
-      const step = 10;
-      var indexStart = (index - 1) * 10;
-      var indexEnd = index * 10;
-      console.log(indexStart, indexEnd);
-      this.dances.push(...this.storeDances.slice(indexStart, indexEnd));
-      done();
+    async onLoad(index, done) {
+      await this.$store.dispatch("dance/fetchDances");
+      if (this.dances.length <= this.storeDances.length) {
+        this.dances.push(
+          ...this.storeDances.slice(10 * (index - 1), index * 10)
+        );
+        done();
+      }
     }
   }
 };
