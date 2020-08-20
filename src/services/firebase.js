@@ -1,7 +1,10 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 import env from "./env";
+import mime from "mime-types";
+// var mime = require("mime-types");
 
 // firebase init - add your own config here
 const firebaseConfig = {
@@ -20,7 +23,7 @@ firebase.initializeApp(firebaseConfig);
 // utils
 const auth = firebase.auth();
 const db = firebase.firestore();
-// const storage = firebase.storage();
+const storageRef = firebase.storage().ref();
 
 const utils = {
   // Auth
@@ -39,7 +42,14 @@ const utils = {
     return array;
   },
   // Storage
-  uploadFileAndGetSecureURL(file) {}
+  async uploadFileAndGetSecureURL(folder, id, name, file) {
+    var nameFile = `${folder}/${id}/${name}.${mime.extension(file.type)}`;
+    console.log(nameFile);
+
+    await storageRef.child(nameFile).put(file);
+
+    return await storageRef.child(nameFile).getDownloadURL();
+  }
 };
 
 // export utils/refs

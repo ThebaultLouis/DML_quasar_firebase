@@ -16,7 +16,7 @@
       <div class="row justify-center">
         <div class="col-10 col-sm-6 col-md-4">
           <q-file
-            v-model="album.photos"
+            v-model="files"
             label="Ajouter des photos"
             filled
             multiple
@@ -67,19 +67,21 @@ export default {
       doneOn: null,
       photos: []
     },
+    files: [],
 
     slide: 0
   }),
   computed: {
     processedFiles() {
-      return this.album.photos.map(file => URL.createObjectURL(file));
+      return this.files.map(file => URL.createObjectURL(file));
     }
   },
   methods: {
     async onSubmit() {
       this.isLoading = true;
       await this.$store.dispatch("album/createAlbum", {
-        album: this.album
+        album: this.album,
+        files: this.files
       });
     }
   }

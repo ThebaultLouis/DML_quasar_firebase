@@ -15,6 +15,14 @@ export default {
     setDances(state, dances) {
       state.dances = dances;
     },
+    addDance(state, { dance, isUpdating }) {
+      if (isUpdating) {
+        var i = context.state.dances.findIndex(d => d.id == dance.id);
+        state.dances[i] = dance;
+      } else {
+        state.dances.unshift(dance);
+      }
+    },
     removeDance(state, id) {
       state.dances = state.dances.filter(dance => dance.id != id);
     },
@@ -59,14 +67,22 @@ export default {
     async createDance(context, { isUpdating, dance, choreographyPdfFile }) {
       // Assert
       console.assert(dance.name, "Le nom de la dance ne doit pas être nulle");
-
-      // Uploading file
-      // if (dance.choreographiePdfFile) {
-      //   dance.choreographiePdf = "NEW_URL"
-      // }
+      // Id
       if (!isUpdating) {
         dance.id = uuidv4();
       }
+
+      // Uploading file
+      if (choreographyPdfFile) {
+        dance.choreographyPdf = await utils.uploadFileAndGetSecureURL(
+          "dances",
+          dance.id,
+          "choreography",
+          choreographyPdfFile
+        );
+        console.log(dance.choreographyPdf);
+      }
+
       try {
         var response = await db
           .collection("dances")
@@ -78,13 +94,7 @@ export default {
       } catch (e) {
         notification.error("La danse n'a pas pu être ajoutée ou modifiée");
       }
-
-      if (isUpdating) {
-        var i = context.state.dances.findIndex(d => d.id == dance.id);
-        context.state.dances[i] = dance;
-      } else {
-        context.state.dances.unshift(dance);
-      }
+      context.commit("addDance", { dance, isUpdating });
       router().go(-1);
     },
     async deleteDance(context, id) {
@@ -93,6 +103,7 @@ export default {
         .doc(id)
         .delete();
       context.commit("removeDance", id);
+      notification.success("La danse a bien été supprimée");
     }
   }
 };

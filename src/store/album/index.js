@@ -31,7 +31,7 @@ export default {
 
       context.commit("setAlbums", events);
     },
-    async createAlbum(context, { album }) {
+    async createAlbum(context, { album, files }) {
       album.id = uuidv4();
       // Uploading file
       // TODO

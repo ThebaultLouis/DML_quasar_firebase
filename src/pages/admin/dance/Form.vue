@@ -90,7 +90,7 @@ export default {
         choreographyVideo: null,
         songLink: null
       };
-      this.choreographyPdfFile = null;
+      // this.choreographyPdfFile = null;
     }
   }
 };
