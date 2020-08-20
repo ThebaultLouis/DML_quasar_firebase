@@ -23,7 +23,7 @@
             append
           />
           <q-carousel
-            v-if="album.photos.length"
+            v-if="files.length"
             v-model="slide"
             transition-prev="slide-right"
             transition-next="slide-left"
@@ -48,7 +48,7 @@
       </div>
       <div class="row justify-center q-mt-sm">
         <q-btn :loading="isLoading" type="submit" color="brown">
-          Ajouter la manifestation
+          Ajouter l'album photo
         </q-btn>
       </div>
     </q-form>

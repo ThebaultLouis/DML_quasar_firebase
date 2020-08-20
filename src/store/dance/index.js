@@ -17,7 +17,7 @@ export default {
     },
     addDance(state, { dance, isUpdating }) {
       if (isUpdating) {
-        var i = context.state.dances.findIndex(d => d.id == dance.id);
+        var i = state.dances.findIndex(d => d.id == dance.id);
         state.dances[i] = dance;
       } else {
         state.dances.unshift(dance);
@@ -80,7 +80,6 @@ export default {
           "choreography",
           choreographyPdfFile
         );
-        console.log(dance.choreographyPdf);
       }
 
       try {

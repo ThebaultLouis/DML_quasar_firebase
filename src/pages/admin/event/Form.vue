@@ -21,23 +21,9 @@
       <div class="row justify-center q-ma-sm q-gutter-sm">
         <div class="col-12 col-sm-8 col-md-4">
           <q-file filled v-model="playlistPdfFile" label="Playlist" />
-          <q-img
-            class="q-my-sm"
-            style="max-height:250px"
-            contain
-            v-if="playlistPdfUrl"
-            :src="playlistPdfUrl"
-          />
         </div>
         <div class="col-12 col-sm-8 col-md-4">
           <q-file filled v-model="posterPdfFile" label="Poster" />
-          <q-img
-            class="q-my-sm"
-            style="max-height:250px"
-            contain
-            v-if="posterPdfUrl"
-            :src="posterPdfUrl"
-          />
         </div>
       </div>
       <div class="row justify-center q-mt-sm">
@@ -81,20 +67,7 @@ export default {
       ...this.$store.state.event.events.find(event => event.id == id)
     };
   },
-  computed: {
-    playlistPdfUrl() {
-      if (!this.playlistPdfFile && !this.event.playlistPdf) return null;
-      return !this.playlistPdfFile
-        ? this.event.playlistPdf
-        : URL.createObjectURL(this.playlistPdfFile);
-    },
-    posterPdfUrl() {
-      if (!this.posterPdfFile && !this.event.posterPdf) return null;
-      return !this.posterPdfFile
-        ? this.event.posterPdf
-        : URL.createObjectURL(this.posterPdfFile);
-    }
-  },
+
   methods: {
     async onSubmit() {
       this.isLoading = true;

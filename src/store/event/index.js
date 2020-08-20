@@ -15,6 +15,14 @@ export default {
     setEvents(state, events) {
       state.events = events;
     },
+    addEvent(state, { event, isUpdating }) {
+      if (isUpdating) {
+        var i = state.events.findIndex(d => d.id == event.id);
+        state.events[i] = event;
+      } else {
+        state.events.unshift(event);
+      }
+    },
     removeEvent(state, id) {
       state.events = state.events.filter(event => event.id != id);
     },
@@ -78,14 +86,32 @@ export default {
     },
     async createEvent(
       context,
-      { isUpdating, event, playlistPdfFile, posterPdfFile }
+      { isUpdating, event, posterPdfFile, playlistPdfFile }
     ) {
-      // Uploading file
-      // TODO
-
       if (!isUpdating) {
         event.id = uuidv4();
       }
+
+      // Uploading file
+      // Poster
+      if (posterPdfFile) {
+        event.posterPdf = await utils.uploadFileAndGetSecureURL(
+          "events",
+          event.id,
+          "poster",
+          posterPdfFile
+        );
+      }
+      // Playlist
+      if (playlistPdfFile) {
+        event.playlistPdf = await utils.uploadFileAndGetSecureURL(
+          "events",
+          event.id,
+          "playlist",
+          playlistPdfFile
+        );
+      }
+
       try {
         var response = await db
           .collection("events")
@@ -100,12 +126,7 @@ export default {
         );
       }
 
-      if (isUpdating) {
-        var i = context.state.events.findIndex(event => event.id == event.id);
-        context.state.events[i] = event;
-      } else {
-        context.state.events.unshift(event);
-      }
+      context.commit("addEvent", { event, isUpdating });
       router().go(-1);
     },
     async deleteEvent(context, id) {
@@ -113,6 +134,7 @@ export default {
         .collection("events")
         .doc(id)
         .delete();
+      notification.success("La manifestation a bien été supprimée");
       context.commit("removeEvent", id);
     }
   }

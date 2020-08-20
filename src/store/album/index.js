@@ -32,9 +32,22 @@ export default {
       context.commit("setAlbums", events);
     },
     async createAlbum(context, { album, files }) {
+      // Id
       album.id = uuidv4();
+
       // Uploading file
-      // TODO
+      // For car séquentielle avec les await contrairement à forEach
+      album.photos = [];
+      for (var i = 0; i < files.length; i++) {
+        album.photos.push(
+          await utils.uploadFileAndGetSecureURL(
+            "albums",
+            album.id,
+            i.toString(),
+            files[i]
+          )
+        );
+      }
 
       try {
         var response = await db
