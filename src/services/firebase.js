@@ -7,14 +7,14 @@ import mime from "mime-types"
 
 // firebase init - add your own config here
 const firebaseConfig = {
-  apiKey: env.VUE_APP_API_KEY,
-  authDomain: env.VUE_APP_AUTH_DOMAIN,
-  databaseURL: env.VUE_APP_DATABASE_URL,
-  projectId: env.VUE_APP_PROJECT_ID,
-  storageBucket: env.VUE_APP_STORAGE_BUCKET,
-  messagingSenderId: env.VUE_APP_MESSAGING_SENDER_ID,
-  appId: env.VUE_APP_APP_ID
-  // measurementId: env.VUE_APP_MEASUREMENT_ID
+  apiKey: env.apiKey,
+  authDomain: env.authDomain,
+  databaseURL: env.databaseURL,
+  projectId: env.projectId,
+  storageBucket: env.storageBucket,
+  messagingSenderId: env.messagingSenderId,
+  appId: env.appId,
+  measurementId: env.measurementId
 }
 
 firebase.initializeApp(firebaseConfig)
