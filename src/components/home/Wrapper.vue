@@ -27,16 +27,16 @@ export default {
   props: ["image"],
   computed: {
     titlePath() {
-      return "/images/home/title/" + this.image;
+      return "/images/home/title/" + this.image
     },
     subtitlePath() {
-      return "/images/home/subtitle/" + this.image;
+      return "/images/home/subtitle/" + this.image
     },
     backgroundPath() {
-      return "/images/home/background/" + this.image;
+      return "/images/home/background/" + this.image
     }
   }
-};
+}
 </script>
 
 <style>

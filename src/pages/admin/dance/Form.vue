@@ -65,21 +65,21 @@ export default {
     ]
   }),
   beforeMount() {
-    var id = this.$route.params.id;
-    if (!id) return;
+    var id = this.$route.params.id
+    if (!id) return
 
-    this.isUpdating = true;
-    console.log(this.$store.getters);
-    this.dance = this.$store.getters["dance/dance"](id);
+    this.isUpdating = true
+    console.log(this.$store.getters)
+    this.dance = this.$store.getters["dance/dance"](id)
   },
   methods: {
     async onSubmit() {
-      this.isLoading = true;
+      this.isLoading = true
       await this.$store.dispatch("dance/createDance", {
         isUpdating: this.isUpdating,
         dance: this.dance,
         choreographyPdfFile: this.choreographyPdfFile
-      });
+      })
     },
     reset() {
       this.dance = {
@@ -88,11 +88,11 @@ export default {
         choreographyPdf: null,
         choreographyVideo: null,
         songLink: null
-      };
+      }
       // this.choreographyPdfFile = null;
     }
   }
-};
+}
 </script>
 
 <style></style>

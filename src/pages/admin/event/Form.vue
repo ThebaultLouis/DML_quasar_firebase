@@ -59,26 +59,26 @@ export default {
     posterPdfFile: null
   }),
   beforeMount() {
-    var id = this.$route.params.id;
-    if (!id) return;
+    var id = this.$route.params.id
+    if (!id) return
 
-    this.isUpdating = true;
-    this.event = this.$store.getters["event/event"](id);
+    this.isUpdating = true
+    this.event = this.$store.getters["event/event"](id)
   },
 
   methods: {
     async onSubmit() {
-      this.isLoading = true;
+      this.isLoading = true
 
       await this.$store.dispatch("event/createEvent", {
         isUpdating: this.isUpdating,
         event: this.event,
         playlistPdfFile: this.playlistPdfFile,
         posterPdfFile: this.posterPdfFile
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style></style>

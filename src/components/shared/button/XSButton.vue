@@ -13,7 +13,7 @@
 <script>
 export default {
   props: ["link", "color", "label"]
-};
+}
 </script>
 
 <style></style>

@@ -57,12 +57,12 @@
 </template>
 
 <script>
-import wrapper from "./Wrapper";
+import wrapper from "./Wrapper"
 export default {
   components: {
     wrapper
   }
-};
+}
 </script>
 
 <style></style>

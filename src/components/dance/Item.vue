@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import DesktopItem from "./responsive/DesktopItem";
-import MobileItem from "./responsive/MobileItem";
+import DesktopItem from "./responsive/DesktopItem"
+import MobileItem from "./responsive/MobileItem"
 
 export default {
   props: ["dance", "admin"],
@@ -19,7 +19,7 @@ export default {
     DesktopItem,
     MobileItem
   }
-};
+}
 </script>
 
 <style></style>

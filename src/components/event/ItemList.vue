@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from "vuex"
 
-import Item from "components/event/Item";
+import Item from "components/event/Item"
 
 export default {
   props: ["admin"],
@@ -39,21 +39,21 @@ export default {
       isFiltering: "event/isFiltering"
     }),
     events() {
-      return this.isFiltering ? this.filteredEvents : this.fetchedEvents;
+      return this.isFiltering ? this.filteredEvents : this.fetchedEvents
     }
   },
   methods: {
     async onLoad(index, done) {
-      if (this.fetchedEvents) await this.$store.dispatch("event/fetchEvents");
+      if (this.fetchedEvents) await this.$store.dispatch("event/fetchEvents")
       if (this.events.length <= this.storeEvents.length) {
         this.events.push(
           ...this.storeEvents.slice(10 * (index - 1), index * 10)
-        );
-        done();
+        )
+        done()
       }
     }
   }
-};
+}
 </script>
 
 <style></style>

@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import PrendreBonneNote from "components/home/PrendreBonneNote";
-import NosProgrammes from "components/home/NosProgrammes";
-import ParIciLesSorties from "components/home/ParIciLesSorties";
-import AutresStandards from "components/home/AutresStandards";
+import PrendreBonneNote from "components/home/PrendreBonneNote"
+import NosProgrammes from "components/home/NosProgrammes"
+import ParIciLesSorties from "components/home/ParIciLesSorties"
+import AutresStandards from "components/home/AutresStandards"
 
 export default {
   components: {
@@ -34,23 +34,23 @@ export default {
     onLoad(index, done) {
       switch (index) {
         case 1:
-          this.prendreBonneNoteIsVisible = true;
-          break;
+          this.prendreBonneNoteIsVisible = true
+          break
         case 2:
-          this.nosProgrammesIsVisible = true;
-          break;
+          this.nosProgrammesIsVisible = true
+          break
         case 3:
-          this.parIciLesSortiesIsVisible = true;
-          break;
+          this.parIciLesSortiesIsVisible = true
+          break
         case 4:
-          this.autresStandardsIsVisible = true;
-          break;
+          this.autresStandardsIsVisible = true
+          break
         default:
       }
-      done();
+      done()
     }
   }
-};
+}
 </script>
 
 <style></style>

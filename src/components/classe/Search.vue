@@ -28,7 +28,7 @@ export default {
     options: ["Débutant", "Intermédiaire", "Avancé"],
     date: ""
   })
-};
+}
 </script>
 
 <style></style>

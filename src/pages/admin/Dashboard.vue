@@ -9,7 +9,7 @@ export default {
   components: {
     Sections: () => import("components/admin/dashboard/Sections")
   }
-};
+}
 </script>
 
 <style></style>

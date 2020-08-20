@@ -1,14 +1,14 @@
 export default {
   namespaced: true,
   state: {
-    classes: []
+    classes: [],
   },
   mutations: {
-    initClasses(state) {}
+    initClasses(state) {},
   },
   actions: {
     initClasses(context) {
-      context.commit("initClasses");
-    }
-  }
-};
+      context.commit("initClasses")
+    },
+  },
+}

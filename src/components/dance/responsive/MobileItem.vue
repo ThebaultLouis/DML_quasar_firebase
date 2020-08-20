@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import XSButton from "components/shared/button/XSButton";
-import MobileAdminActions from "components/shared/admin/MobileActions";
+import XSButton from "components/shared/button/XSButton"
+import MobileAdminActions from "components/shared/admin/MobileActions"
 
 export default {
   props: [
@@ -49,7 +49,7 @@ export default {
     XSButton,
     MobileAdminActions
   }
-};
+}
 </script>
 
 <style></style>

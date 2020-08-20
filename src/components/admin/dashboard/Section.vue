@@ -25,7 +25,7 @@
 <script>
 export default {
   props: ["title", "createLinkName", "listLinkName"]
-};
+}
 </script>
 
 <style></style>

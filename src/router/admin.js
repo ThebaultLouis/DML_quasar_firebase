@@ -52,6 +52,6 @@ var routes = [
     name: "AdminUpdateAlbum",
     component: () => import("pages/admin/album/Form.vue")
   }
-];
+]
 
-export default routes;
+export default routes

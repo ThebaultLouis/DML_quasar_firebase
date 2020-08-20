@@ -25,18 +25,18 @@ export default {
     value: null
   }),
   beforeMount() {
-    this.value = this.date;
+    this.value = this.date
   },
   watch: {
     value() {
-      this.$emit("input", this.value);
+      this.$emit("input", this.value)
     }
   }
   // model: {
   //   prop: "date",
   //   event: "input"
   // }
-};
+}
 </script>
 
 <style></style>

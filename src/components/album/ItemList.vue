@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from "vuex"
 
 export default {
   props: ["admin"],
@@ -24,14 +24,14 @@ export default {
   }),
   methods: {
     async onLoad(index, done) {
-      await this.$store.dispatch("album/fetchAlbums");
+      await this.$store.dispatch("album/fetchAlbums")
       if (this.albums.length <= this.fetchedAlbums.length) {
-        this.albums.push(this.fetchedAlbums[this.albums.length]);
-        done();
+        this.albums.push(this.fetchedAlbums[this.albums.length])
+        done()
       }
     }
   }
-};
+}
 </script>
 
 <style></style>

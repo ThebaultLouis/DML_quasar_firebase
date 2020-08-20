@@ -21,14 +21,14 @@ export default {
   computed: {
     searchName: {
       get() {
-        return this.$store.state.dance.searchName;
+        return this.$store.state.dance.searchName
       },
       set(value) {
-        this.$store.dispatch("dance/searchDances", value);
+        this.$store.dispatch("dance/searchDances", value)
       }
     }
   }
-};
+}
 </script>
 
 <style></style>

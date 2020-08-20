@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import Button from "components/shared/button/Button";
-import DesktopAdminActions from "components/shared/admin/DesktopActions";
+import Button from "components/shared/button/Button"
+import DesktopAdminActions from "components/shared/admin/DesktopActions"
 export default {
   props: [
     "id",
@@ -63,12 +63,12 @@ export default {
   },
   computed: {
     address() {
-      if (!this.zipcode) return this.city;
-      if (!this.city) return this.zipcode;
-      return this.city + " - " + this.zipcode;
+      if (!this.zipcode) return this.city
+      if (!this.city) return this.zipcode
+      return this.city + " - " + this.zipcode
     }
   }
-};
+}
 </script>
 
 <style></style>

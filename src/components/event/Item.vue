@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import DesktopItem from "./responsive/DesktopItem";
-import MobileItem from "./responsive/MobileItem";
+import DesktopItem from "./responsive/DesktopItem"
+import MobileItem from "./responsive/MobileItem"
 export default {
   props: ["event", "admin"],
   components: {
@@ -22,12 +22,12 @@ export default {
   },
   computed: {
     address() {
-      if (!this.zipcode) return this.city;
-      if (!this.city) return this.zipcode;
-      return this.city + " - " + this.zipcode;
+      if (!this.zipcode) return this.city
+      if (!this.city) return this.zipcode
+      return this.city + " - " + this.zipcode
     }
   }
-};
+}
 </script>
 
 <style></style>

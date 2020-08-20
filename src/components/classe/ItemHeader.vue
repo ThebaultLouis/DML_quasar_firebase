@@ -22,7 +22,7 @@ export default {
   components: {
     ButtonList: () => import("components/shared/button/ButtonList")
   }
-};
+}
 </script>
 
 <style></style>

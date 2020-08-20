@@ -34,14 +34,14 @@ export default {
   computed: {
     isAtHome: {
       get() {
-        return this.$store.state.event.isAtHome;
+        return this.$store.state.event.isAtHome
       },
       set(item) {
-        this.$store.dispatch("event/setIsAtHome", item);
+        this.$store.dispatch("event/setIsAtHome", item)
       }
     }
   }
-};
+}
 </script>
 
 <style></style>

@@ -1,4 +1,4 @@
-import { Notify } from "quasar";
+import { Notify } from "quasar"
 
 const notification = {
   success(message) {
@@ -6,17 +6,17 @@ const notification = {
       color: "green-4",
       textColor: "white",
       icon: "cloud_done",
-      message: message
-    });
+      message: message,
+    })
   },
   error(message) {
     Notify.create({
       color: "red-5",
       textColor: "white",
       icon: "warning",
-      message: message
-    });
-  }
-};
+      message: message,
+    })
+  },
+}
 
-export { notification };
+export { notification }

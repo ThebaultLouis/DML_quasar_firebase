@@ -1,9 +1,9 @@
 // Admin Route
-import adminRoutes from "./admin";
+import adminRoutes from "./admin"
 
 // Components
-import Home from "pages/Home.vue";
-import CountryDances from "pages/country/Dances.vue";
+import Home from "pages/Home.vue"
+import CountryDances from "pages/country/Dances.vue"
 
 const routes = [
   {
@@ -81,6 +81,6 @@ const routes = [
     path: "*",
     component: () => import("pages/Error404.vue")
   }
-];
+]
 
-export default routes;
+export default routes

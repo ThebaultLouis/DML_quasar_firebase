@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import ButtonList from "components/shared/button/ButtonList";
-import DesktopAdminActions from "components/shared/admin/DesktopActions";
+import ButtonList from "components/shared/button/ButtonList"
+import DesktopAdminActions from "components/shared/admin/DesktopActions"
 export default {
   props: [
     "admin",
@@ -41,7 +41,7 @@ export default {
     ButtonList,
     DesktopAdminActions
   }
-};
+}
 </script>
 
 <style></style>

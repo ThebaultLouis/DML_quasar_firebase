@@ -68,13 +68,13 @@ export default {
   }),
   methods: {
     async deleteAlbum() {
-      this.isLoading = true;
-      await this.$store.dispatch("album/deleteAlbum", this.id);
-      this.isDestroyed = true;
+      this.isLoading = true
+      await this.$store.dispatch("album/deleteAlbum", this.id)
+      this.isDestroyed = true
       // this.isLoading = false
     }
   }
-};
+}
 </script>
 
 <style></style>

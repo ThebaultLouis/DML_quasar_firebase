@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import Button from "./Button";
+import Button from "./Button"
 export default {
   props: ["choreographyPdf", "choreographyVideo", "songLink"],
   components: {
     Button
   }
-};
+}
 </script>
 
 <style></style>

@@ -15,7 +15,7 @@
 <script>
 export default {
   props: ["title", "linkName", "icon"]
-};
+}
 </script>
 
 <style></style>

@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import XSButton from "components/shared/button/XSButton";
-import MobileAdminActions from "components/shared/admin/MobileActions";
+import XSButton from "components/shared/button/XSButton"
+import MobileAdminActions from "components/shared/admin/MobileActions"
 export default {
   props: [
     "id",
@@ -45,12 +45,12 @@ export default {
   },
   computed: {
     address() {
-      if (!this.zipcode) return this.city;
-      if (!this.city) return this.zipcode;
-      return this.city + " - " + this.zipcode;
+      if (!this.zipcode) return this.city
+      if (!this.city) return this.zipcode
+      return this.city + " - " + this.zipcode
     }
   }
-};
+}
 </script>
 
 <style></style>

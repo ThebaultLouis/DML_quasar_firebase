@@ -28,11 +28,11 @@ export default {
   model: {},
   computed: {
     fileUrl() {
-      if (!this.file && !this.url) return null;
-      return this.file ? URL.createObjectURL(this.pfile) : this.url;
+      if (!this.file && !this.url) return null
+      return this.file ? URL.createObjectURL(this.pfile) : this.url
     }
   }
-};
+}
 </script>
 
 <style></style>

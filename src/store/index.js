@@ -1,14 +1,14 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from "vue"
+import Vuex from "vuex"
 
 // import example from './module-example'
-import auth from "./auth";
-import album from "./album";
-import classe from "./classe";
-import dance from "./dance";
-import event from "./event";
+import auth from "./auth"
+import album from "./album"
+import classe from "./classe"
+import dance from "./dance"
+import event from "./event"
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 /*
  * If not building with SSR mode, you can
@@ -19,7 +19,7 @@ Vue.use(Vuex);
  * with the Store instance.
  */
 
-export default function(/* { ssrContext } */) {
+export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       // example
@@ -27,13 +27,13 @@ export default function(/* { ssrContext } */) {
       album,
       classe,
       dance,
-      event
+      event,
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode only
-    strict: process.env.DEV
-  });
+    strict: process.env.DEV,
+  })
 
-  return Store;
+  return Store
 }

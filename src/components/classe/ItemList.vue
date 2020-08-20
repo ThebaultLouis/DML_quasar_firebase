@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from "vuex"
 
 export default {
   components: {
@@ -21,18 +21,18 @@ export default {
   beforeMount() {
     // console.log(this.classes);
     // this.$store.dispatch("classe/initClasses");
-    this.$store.dispatch("dance/initDances");
+    this.$store.dispatch("dance/initDances")
   },
   computed: mapState({
     classes: state => state.classe.classes
   }),
   methods: {
     async onLoad(index, done) {
-      await this.$store.dispatch("classe/fetchMoreClasses");
-      done();
+      await this.$store.dispatch("classe/fetchMoreClasses")
+      done()
     }
   }
-};
+}
 </script>
 
 <style></style>

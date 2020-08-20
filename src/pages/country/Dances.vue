@@ -11,7 +11,7 @@ export default {
     Search: () => import("components/dance/Search"),
     Dances: () => import("components/dance/ItemList")
   }
-};
+}
 </script>
 
 <style></style>

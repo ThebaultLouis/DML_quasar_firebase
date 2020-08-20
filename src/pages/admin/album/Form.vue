@@ -73,19 +73,19 @@ export default {
   }),
   computed: {
     processedFiles() {
-      return this.files.map(file => URL.createObjectURL(file));
+      return this.files.map(file => URL.createObjectURL(file))
     }
   },
   methods: {
     async onSubmit() {
-      this.isLoading = true;
+      this.isLoading = true
       await this.$store.dispatch("album/createAlbum", {
         album: this.album,
         files: this.files
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style></style>

@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex"
 
-import Item from "components/dance/Item";
+import Item from "components/dance/Item"
 
 export default {
   props: ["admin"],
@@ -34,7 +34,7 @@ export default {
     dances: []
   }),
   async beforeMount() {
-    await this.$store.dispatch("dance/fetchDances");
+    await this.$store.dispatch("dance/fetchDances")
   },
   computed: {
     ...mapGetters({
@@ -45,16 +45,16 @@ export default {
 
   methods: {
     async onLoad(index, done) {
-      await this.$store.dispatch("dance/fetchDances");
+      await this.$store.dispatch("dance/fetchDances")
       if (this.dances.length <= this.storeDances.length) {
         this.dances.push(
           ...this.storeDances.slice(10 * (index - 1), index * 10)
-        );
-        done();
+        )
+        done()
       }
     }
   }
-};
+}
 </script>
 
 <style></style>

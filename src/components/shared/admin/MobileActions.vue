@@ -14,10 +14,10 @@ export default {
   props: ["id", "updateLinkName", "deleteActionName"],
   methods: {
     delete() {
-      this.$store.dispatch(this.deleteActionName, id);
+      this.$store.dispatch(this.deleteActionName, id)
     }
   }
-};
+}
 </script>
 
 <style></style>
