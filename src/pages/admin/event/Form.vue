@@ -59,6 +59,9 @@ export default {
     posterPdfFile: null
   }),
   beforeMount() {
+    // Fetch before update
+    this.$store.dispatch("event/fetchEvents")
+    // Updating
     var id = this.$route.params.id
     if (!id) return
 

@@ -8,7 +8,7 @@ export default {
   state: {
     fetchedDances: [],
     filteredDances: [],
-    searchName: "",
+    searchName: ""
   },
   mutations: {
     setFetchedDances(state, dances) {
@@ -16,14 +16,14 @@ export default {
     },
     addDance(state, { dance, isUpdating }) {
       if (isUpdating) {
-        var i = state.fetchedDances.findIndex((d) => d.id == dance.id)
+        var i = state.fetchedDances.findIndex(d => d.id == dance.id)
         state.fetchedDances[i] = dance
       } else {
         state.fetchedDances.unshift(dance)
       }
     },
     removeDance(state, id) {
-      state.dances = state.fetchedDances.filter((dance) => dance.id != id)
+      state.dances = state.fetchedDances.filter(dance => dance.id != id)
     },
     setSearchName(state, name) {
       state.searchName = name
@@ -33,7 +33,7 @@ export default {
     },
     setFilteredDances(state, dances) {
       state.filteredDances = dances
-    },
+    }
   },
   getters: {
     isFiltering(state) {
@@ -42,16 +42,19 @@ export default {
     dances(state, getters) {
       return getters.isFiltering ? state.filteredDances : state.fetchedDances
     },
-    dance: (state) => (id) => {
+    dance: state => id => {
       return {
-        ...state.fetchedDances.find((dance) => dance.id == id),
+        ...state.fetchedDances.find(dance => dance.id == id)
       }
-    },
+    }
   },
   actions: {
     async fetchDances(context) {
       if (context.state.fetchedDances.length) return
-      var docs = await db.collection("dances").orderBy("name").get()
+      var docs = await db
+        .collection("dances")
+        .orderBy("name")
+        .get()
       var dances = utils.docsIntoArray(docs)
 
       context.commit("setFetchedDances", dances)
@@ -60,7 +63,7 @@ export default {
       // searchName = searchName.charAt(0).toUpperCase() + searchName.slice(1);
       context.commit("setSearchName", searchName)
       searchName = searchName.toLowerCase()
-      var dances = context.state.fetchedDances.filter((dance) =>
+      var dances = context.state.fetchedDances.filter(dance =>
         dance.name.toLowerCase().includes(searchName)
       )
       context.commit("setFilteredDances", dances)
@@ -83,21 +86,31 @@ export default {
         )
       }
 
+      // Name
+      dance.name = dance.name.charAt(0).toUpperCase() + dance.name.slice(1)
+
       try {
-        var response = await db.collection("dances").doc(dance.id).set(dance)
+        var response = await db
+          .collection("dances")
+          .doc(dance.id)
+          .set(dance)
         notification.success(
           "La danse a bien été " + (isUpdating ? "modifiée" : "créée")
         )
       } catch (e) {
         notification.error("La danse n'a pas pu être ajoutée ou modifiée")
+        return
       }
       context.commit("addDance", { dance, isUpdating })
       router().go(-1)
     },
     async deleteDance(context, id) {
-      await db.collection("dances").doc(id).delete()
+      await db
+        .collection("dances")
+        .doc(id)
+        .delete()
       context.commit("removeDance", id)
       notification.success("La danse a bien été supprimée")
-    },
-  },
+    }
+  }
 }

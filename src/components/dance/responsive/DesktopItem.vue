@@ -19,6 +19,7 @@
           :id="id"
           updateLinkName="AdminUpdateDance"
           deleteActionName="dance/deleteDance"
+          v-on:deleted="$emit('deleted')"
         />
       </div>
     </div>

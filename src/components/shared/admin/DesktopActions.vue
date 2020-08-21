@@ -1,13 +1,7 @@
 <template>
   <div class="row justify-center">
     <div class="col text-center">
-      <q-btn
-        @click="$store.dispatch(deleteActionName, id)"
-        flat
-        size="25px"
-        color="red"
-        icon="close"
-      />
+      <q-btn @click="remove" flat size="25px" color="red" icon="close" />
     </div>
     <div class="col text-center">
       <q-btn
@@ -25,8 +19,9 @@
 export default {
   props: ["id", "updateLinkName", "deleteActionName"],
   methods: {
-    delete() {
-      this.$store.dispatch(this.deleteActionName, id)
+    async remove() {
+      await this.$store.dispatch(this.deleteActionName, this.id)
+      this.$emit("deleted", this.id)
     }
   }
 }

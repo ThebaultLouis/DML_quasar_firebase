@@ -1,12 +1,21 @@
 <template>
-  <div>
+  <div v-if="!isDeleted">
     <!-- gt-xs -->
     <div class="gt-xs ">
-      <DesktopItem v-bind="event" :admin="admin" />
+      <DesktopItem
+        v-on:deleted="isDeleted = true"
+        v-bind="event"
+        :admin="admin"
+      />
     </div>
     <!-- lt-sm -->
     <div class="lt-sm">
-      <MobileItem class="q-my-md" v-bind="event" :admin="admin" />
+      <MobileItem
+        v-on:deleted="isDeleted = true"
+        class="q-my-md"
+        v-bind="event"
+        :admin="admin"
+      />
     </div>
   </div>
 </template>
@@ -20,6 +29,9 @@ export default {
     DesktopItem,
     MobileItem
   },
+  data: () => ({
+    isDeleted: false
+  }),
   computed: {
     address() {
       if (!this.zipcode) return this.city

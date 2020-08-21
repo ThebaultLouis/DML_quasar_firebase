@@ -1,10 +1,19 @@
 <template>
-  <div>
+  <div v-if="!isDeleted">
     <div class="gt-xs">
-      <DesktopItem v-bind="dance" :admin="admin" />
+      <DesktopItem
+        v-on:deleted="isDeleted = true"
+        v-bind="dance"
+        :admin="admin"
+      />
     </div>
     <div class="lt-sm">
-      <MobileItem class="q-my-md" v-bind="dance" :admin="admin" />
+      <MobileItem
+        v-on:deleted="isDeleted = true"
+        v-bind="dance"
+        :admin="admin"
+        class="q-my-md"
+      />
     </div>
   </div>
 </template>
@@ -18,7 +27,10 @@ export default {
   components: {
     DesktopItem,
     MobileItem
-  }
+  },
+  data: () => ({
+    isDeleted: false
+  })
 }
 </script>
 

@@ -27,6 +27,7 @@
         :id="id"
         updateLinkName="AdminUpdateDance"
         deleteActionName="dance/deleteDance"
+        v-on:deleted="$emit('deleted')"
       />
     </q-card>
   </div>

@@ -34,6 +34,7 @@
               :id="id"
               updateLinkName="AdminUpdateEvent"
               deleteActionName="event/deleteEvent"
+              v-on:deleted="$emit('deleted')"
             />
           </div>
         </div>

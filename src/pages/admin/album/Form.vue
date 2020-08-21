@@ -60,6 +60,10 @@ export default {
   components: {
     Calendar: () => import("components/shared/date/Calendar")
   },
+  beforeMount() {
+    // Fetch before update
+    this.$store.dispatch("album/fetchAlbums")
+  },
   data: () => ({
     isLoading: false,
     album: {

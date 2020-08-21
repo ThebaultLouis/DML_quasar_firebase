@@ -3,7 +3,7 @@
     <q-btn :to="{ name: updateLinkName, params: { id: id } }" flat color="red">
       Modifier
     </q-btn>
-    <q-btn @click="$store.dispatch(deleteActionName, id)" flat color="red">
+    <q-btn @click="remove" flat color="red">
       Supprimer
     </q-btn>
   </q-card-actions>
@@ -13,8 +13,9 @@
 export default {
   props: ["id", "updateLinkName", "deleteActionName"],
   methods: {
-    delete() {
+    async remove() {
       this.$store.dispatch(this.deleteActionName, id)
+      this.$emit("deleted", id)
     }
   }
 }

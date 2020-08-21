@@ -65,6 +65,9 @@ export default {
     ]
   }),
   beforeMount() {
+    // Fetch before update
+    this.$store.dispatch("dance/fetchDances")
+    // Updating
     var id = this.$route.params.id
     if (!id) return
 
