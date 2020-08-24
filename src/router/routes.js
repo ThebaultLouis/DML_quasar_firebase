@@ -68,6 +68,7 @@ const routes = [
         path: "admin",
         component: () => import("pages/admin/Index.vue"),
         meta: {
+          admin: true,
           requiresAuth: true
         },
         children: adminRoutes

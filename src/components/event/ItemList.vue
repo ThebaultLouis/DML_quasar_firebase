@@ -2,7 +2,7 @@
   <div>
     <q-infinite-scroll v-if="!isFiltering" @load="onLoad" :offset="250">
       <div v-for="event in events" :key="event._id">
-        <Item :event="event" :admin="admin" />
+        <Item :event="event" />
       </div>
       <template v-slot:loading>
         <div class="row justify-center q-my-md">
@@ -12,7 +12,7 @@
     </q-infinite-scroll>
     <div v-else>
       <div v-for="event in storeEvents" :key="event._id">
-        <Item :event="event" :admin="admin" />
+        <Item :event="event" />
       </div>
     </div>
     <q-separator />
@@ -25,7 +25,6 @@ import { mapGetters } from "vuex"
 import Item from "components/event/Item"
 
 export default {
-  props: ["admin"],
   components: {
     Item
   },

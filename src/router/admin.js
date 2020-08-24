@@ -8,7 +8,7 @@ var routes = [
   {
     path: "dances",
     name: "AdminDances",
-    component: () => import("pages/admin/dance/Dances.vue")
+    component: () => import("pages/country/Dances.vue")
   },
   {
     path: "dance/create",
@@ -24,7 +24,7 @@ var routes = [
   {
     path: "events",
     name: "AdminEvents",
-    component: () => import("pages/admin/event/Events.vue")
+    component: () => import("pages/Events.vue")
   },
   {
     path: "event/create",
@@ -40,7 +40,7 @@ var routes = [
   {
     path: "albums",
     name: "AdminAlbums",
-    component: () => import("pages/admin/album/Albums.vue")
+    component: () => import("pages/Albums.vue")
   },
   {
     path: "album/create",

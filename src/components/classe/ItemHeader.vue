@@ -2,13 +2,14 @@
   <div class="row items-center">
     <div class="col">
       <div class="text-h5 q-mt-sm q-mb-xs">
-        {{ name }}
+        {{ learnedDance ? learnedDance.name : "Cours de révision" }}
       </div>
       <div class="text-caption text-grey">
         5 août 2020
       </div>
     </div>
     <ButtonList
+      v-if="learnedDance"
       :choreographyPdf="choreographyPdf"
       :choreographyLink="choreographyLink"
       :songLink="songLink"
@@ -18,7 +19,13 @@
 
 <script>
 export default {
-  props: ["name", "doneOn", "choreographyPdf", "choreographyLink", "songLink"],
+  props: [
+    "learnedDance",
+    "doneOn",
+    "choreographyPdf",
+    "choreographyLink",
+    "songLink"
+  ],
   components: {
     ButtonList: () => import("components/shared/button/ButtonList")
   }

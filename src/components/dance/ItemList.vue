@@ -3,7 +3,7 @@
     <q-infinite-scroll v-if="!isFiltering" @load="onLoad" :offset="250">
       <div v-if="dances.length">
         <div v-for="dance in dances" :key="dance.id">
-          <Item :admin="admin" :dance="dance" />
+          <Item :dance="dance" />
         </div>
       </div>
       <template v-slot:loading>
@@ -14,7 +14,7 @@
     </q-infinite-scroll>
     <div v-else>
       <div v-for="dance in storeDances" :key="dance.id">
-        <Item :admin="admin" :dance="dance" />
+        <Item :dance="dance" />
       </div>
     </div>
   </div>
@@ -26,7 +26,6 @@ import { mapState, mapGetters } from "vuex"
 import Item from "components/dance/Item"
 
 export default {
-  props: ["admin"],
   components: {
     Item
   },

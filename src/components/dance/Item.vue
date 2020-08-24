@@ -1,17 +1,12 @@
 <template>
   <div v-if="!isDeleted">
     <div class="gt-xs">
-      <DesktopItem
-        v-on:deleted="isDeleted = true"
-        v-bind="dance"
-        :admin="admin"
-      />
+      <DesktopItem v-on:deleted="isDeleted = true" v-bind="dance" />
     </div>
     <div class="lt-sm">
       <MobileItem
         v-on:deleted="isDeleted = true"
         v-bind="dance"
-        :admin="admin"
         class="q-my-md"
       />
     </div>
@@ -23,7 +18,7 @@ import DesktopItem from "./responsive/DesktopItem"
 import MobileItem from "./responsive/MobileItem"
 
 export default {
-  props: ["dance", "admin"],
+  props: ["dance"],
   components: {
     DesktopItem,
     MobileItem

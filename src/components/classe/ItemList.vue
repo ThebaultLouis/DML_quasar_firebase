@@ -1,35 +1,51 @@
 <template>
   <div>
-    <!-- <q-infinite-scroll @load="onLoad" :offset="100"> -->
-    <div v-for="i in 5" :key="i">
-      <!-- <div v-for="classe in classes" :key="classe._id"> -->
-      <Item />
-      <!-- <Item v-bind="classe" /> -->
+    <q-infinite-scroll v-if="!isFiltering" @load="onLoad" :offset="250">
+      <div v-if="classes.length">
+        <div v-for="classe in classes" :key="classe.id">
+          <Item :classe="classe" />
+        </div>
+      </div>
+      <template v-slot:loading>
+        <div class="row justify-center q-my-md">
+          <q-spinner-dots color="primary" size="40px" />
+        </div>
+      </template>
+    </q-infinite-scroll>
+    <div v-else>
+      <div v-for="classe in storeClasses" :key="classe.id">
+        <Item :classe="classe" />
+      </div>
     </div>
-    <!-- </q-infinite-scroll> -->
-    <q-separator />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapGetters } from "vuex"
 
 export default {
   components: {
     Item: () => import("components/classe/Item")
   },
-  beforeMount() {
-    // console.log(this.classes);
-    // this.$store.dispatch("classe/initClasses");
-    this.$store.dispatch("dance/initDances")
-  },
-  computed: mapState({
-    classes: state => state.classe.classes
+  data: () => ({
+    classes: []
   }),
+  computed: {
+    ...mapGetters({
+      storeClasses: "classe/classes",
+      isFiltering: "classe/isFiltering"
+    })
+  },
+
   methods: {
     async onLoad(index, done) {
-      await this.$store.dispatch("classe/fetchMoreClasses")
-      done()
+      await this.$store.dispatch("classe/fetchClasses")
+      if (this.classes.length <= this.storeClasses.length) {
+        this.classes.push(
+          ...this.storeClasses.slice(6 * (index - 1), index * 6)
+        )
+        done()
+      }
     }
   }
 }

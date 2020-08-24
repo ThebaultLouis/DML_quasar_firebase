@@ -21,9 +21,9 @@
           label="Musique de la chorégraphie"
         />
       </q-card-actions>
-      <q-separator v-if="admin" />
+      <q-separator v-if="isOnAdminPath" />
       <MobileAdminActions
-        v-if="admin"
+        v-if="isOnAdminPath"
         :id="id"
         updateLinkName="AdminUpdateDance"
         deleteActionName="dance/deleteDance"
@@ -38,14 +38,7 @@ import XSButton from "components/shared/button/XSButton"
 import MobileAdminActions from "components/shared/admin/MobileActions"
 
 export default {
-  props: [
-    "admin",
-    "id",
-    "name",
-    "choreographyPdf",
-    "choreographyVideo",
-    "songLink"
-  ],
+  props: ["id", "name", "choreographyPdf", "choreographyVideo", "songLink"],
   components: {
     XSButton,
     MobileAdminActions

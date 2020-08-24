@@ -13,8 +13,8 @@
           :songLink="songLink"
         />
       </div>
-      <q-separator v-if="admin" vertical />
-      <div class="col-2" v-if="admin">
+      <q-separator v-if="isOnAdminPath" vertical />
+      <div class="col-2" v-if="isOnAdminPath">
         <DesktopAdminActions
           :id="id"
           updateLinkName="AdminUpdateDance"
@@ -27,17 +27,11 @@
 </template>
 
 <script>
+// Components
 import ButtonList from "components/shared/button/ButtonList"
 import DesktopAdminActions from "components/shared/admin/DesktopActions"
 export default {
-  props: [
-    "admin",
-    "id",
-    "name",
-    "choreographyPdf",
-    "choreographyVideo",
-    "songLink"
-  ],
+  props: ["id", "name", "choreographyPdf", "choreographyVideo", "songLink"],
   components: {
     ButtonList,
     DesktopAdminActions

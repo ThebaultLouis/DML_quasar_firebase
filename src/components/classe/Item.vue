@@ -3,9 +3,9 @@
     <div class="col-12 col-sm-8 q-pa-sm">
       <q-card class=" ">
         <q-card-section>
-          <Header v-bind="dances[2]" />
+          <Header v-bind="classe" />
         </q-card-section>
-        <q-card-actions>
+        <q-card-actions v-if="classe.reviewedDances.length">
           <q-space />
           <q-item clickable @click="expanded = !expanded">
             <div class="text-grey q-mr-sm">
@@ -24,9 +24,9 @@
             <q-separator />
             <q-card-section>
               <DanceItem
-                v-for="dance in dances"
-                v-bind="dance"
-                :key="dance._id"
+                v-for="dance in classe.reviewedDances"
+                :dance="dance"
+                :key="dance.id"
               />
             </q-card-section>
           </div>
@@ -40,16 +40,14 @@
 import { mapState } from "vuex"
 
 export default {
+  props: ["classe"],
   data: () => ({
     expanded: false
   }),
   components: {
     Header: () => import("components/classe/ItemHeader"),
     DanceItem: () => import("components/dance/Item")
-  },
-  computed: mapState({
-    dances: state => state.dance.dances
-  })
+  }
 }
 </script>
 

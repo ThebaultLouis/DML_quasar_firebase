@@ -5,7 +5,7 @@
         <q-item-label>{{ name }}</q-item-label>
         <q-item-label caption>{{ doneOn }}</q-item-label>
       </q-item-section>
-      <q-item-section v-if="admin">
+      <q-item-section v-if="isOnAdminPath">
         <div @click="deleteAlbum" class="row justify-end">
           <q-btn
             :loading="isLoading"
@@ -59,7 +59,7 @@
 
 <script>
 export default {
-  props: ["id", "name", "doneOn", "photos", "admin"],
+  props: ["id", "name", "doneOn", "photos"],
   data: () => ({
     slide: 0,
     fullscreen: false,
