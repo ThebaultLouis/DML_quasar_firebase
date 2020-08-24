@@ -27,7 +27,10 @@ const routes = [
       {
         path: "country/classes",
         name: "CountryClasses",
-        component: () => import("pages/country/Classes.vue")
+        component: () => import("pages/country/Classes.vue"),
+        meta: {
+          classe: true
+        }
       },
       // Events
       {

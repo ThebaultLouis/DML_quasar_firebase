@@ -5,15 +5,17 @@
         {{ learnedDance ? learnedDance.name : "Cours de révision" }}
       </div>
       <div class="text-caption text-grey">
-        5 août 2020
+        {{ timestampToDate(doneOn) }}
       </div>
     </div>
-    <ButtonList
-      v-if="learnedDance"
-      :choreographyPdf="choreographyPdf"
-      :choreographyLink="choreographyLink"
-      :songLink="songLink"
-    />
+    <div class="col-6 col-sm-5 col-md-4">
+      <ButtonList
+        v-if="learnedDance"
+        :choreographyPdf="learnedDance.choreographyPdf"
+        :choreographyLink="learnedDance.choreographyLink"
+        :songLink="learnedDance.songLink"
+      />
+    </div>
   </div>
 </template>
 

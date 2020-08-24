@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-center">
-    <div class="col-12 col-sm-8 q-pa-sm">
-      <q-card class=" ">
+    <div class="col-12 col-sm-8 q-ma-sm">
+      <q-card style="min-height:125px">
         <q-card-section>
           <Header v-bind="classe" />
         </q-card-section>
@@ -22,12 +22,13 @@
         <q-slide-transition>
           <div v-show="expanded">
             <q-separator />
-            <q-card-section>
+            <q-card-section style="padding:0">
               <DanceItem
                 v-for="dance in classe.reviewedDances"
-                :dance="dance"
                 :key="dance.id"
+                :dance="dance"
               />
+              <div class="lt-sm" style="height:10px"></div>
             </q-card-section>
           </div>
         </q-slide-transition>
@@ -38,6 +39,9 @@
 
 <script>
 import { mapState } from "vuex"
+// Components
+import Header from "components/classe/ItemHeader"
+import DanceItem from "components/dance/Item"
 
 export default {
   props: ["classe"],
@@ -45,8 +49,8 @@ export default {
     expanded: false
   }),
   components: {
-    Header: () => import("components/classe/ItemHeader"),
-    DanceItem: () => import("components/dance/Item")
+    Header,
+    DanceItem
   }
 }
 </script>

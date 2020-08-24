@@ -1,9 +1,9 @@
 <template>
-  <q-card v-if="!isDestroyed" class="q-ma-sm">
+  <q-card v-if="!isDestroyed" class="q-my-sm">
     <q-item>
       <q-item-section>
         <q-item-label>{{ name }}</q-item-label>
-        <q-item-label caption>{{ doneOn }}</q-item-label>
+        <q-item-label caption>{{ timestampToDate(doneOn) }}</q-item-label>
       </q-item-section>
       <q-item-section v-if="isOnAdminPath">
         <div @click="deleteAlbum" class="row justify-end">
@@ -14,7 +14,6 @@
             color="red"
             icon="close"
           />
-          <!-- <q-btn size="20px" flat color="amber-8" icon="east" /> -->
         </div>
       </q-item-section>
     </q-item>

@@ -2,18 +2,14 @@
   <div class="row q-my-sm q-px-sm">
     <div class="col-0 col-sm-2"></div>
     <div class="col-6 col-sm-4">
-      <q-select
-        filled
-        v-model="model"
-        :options="options"
-        label="Niveau"
-        color="brown"
-        clearable
-      />
+      <LevelButton v-model="model" />
     </div>
     <div class="col-1"></div>
     <div class="col-5 col-sm-3">
-      <Calendar v-model="date" />
+      <Calendar
+        @input="value => $store.dispatch('classe/setDate', value)"
+        :dates="$store.state.classe.dates"
+      />
     </div>
   </div>
 </template>
@@ -21,13 +17,18 @@
 <script>
 export default {
   components: {
-    Calendar: () => import("components/shared/date/Calendar")
+    Calendar: () => import("components/shared/date/Calendar"),
+    LevelButton: () => import("components/classe/LevelButton")
   },
   data: () => ({
     model: null,
-    options: ["Débutant", "Intermédiaire", "Avancé"],
     date: ""
-  })
+  }),
+  watch: {
+    model(option) {
+      this.$store.dispatch("classe/setLevel", option)
+    }
+  }
 }
 </script>
 

@@ -2,6 +2,7 @@
   <div v-if="!isDeleted">
     <div class="gt-xs">
       <DesktopItem v-on:deleted="isDeleted = true" v-bind="dance" />
+      <q-separator />
     </div>
     <div class="lt-sm">
       <MobileItem

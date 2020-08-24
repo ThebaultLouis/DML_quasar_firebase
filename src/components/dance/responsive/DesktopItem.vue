@@ -1,12 +1,11 @@
 <template>
   <div>
-    <q-separator />
-    <div class="row items-center" style="min-height:50px">
-      <div class="col-5 text-h6 q-ml-sm">
+    <div class="row items-center" style="min-height:60px">
+      <div class="col text-h6 q-ml-sm">
         {{ name }}
       </div>
       <q-space />
-      <div class="col-4">
+      <div class="col-6 col-sm-4">
         <ButtonList
           :choreographyPdf="choreographyPdf"
           :choreographyVideo="choreographyVideo"

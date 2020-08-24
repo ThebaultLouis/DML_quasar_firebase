@@ -5,6 +5,7 @@ import { notification } from "../../services/notification"
 
 // Modules
 import dance from "../dance"
+import { setLogLevel } from "firebase"
 
 export default {
   namespaced: true,
@@ -14,6 +15,7 @@ export default {
   state: {
     fetchedClasses: [],
     filteredClasses: [],
+    dates: [],
     search: {
       date: null,
       level: null
@@ -34,8 +36,21 @@ export default {
     removeClasse(state, id) {
       state.classes = state.fetchedClasses.filter(classe => classe.id != id)
     },
-    setFilteredDances(state, dances) {
-      state.filteredDances = dances
+    // Filter
+    setFilteredClasses(state, classes) {
+      state.filteredClasses = classes
+    },
+    // Dates
+    setDates(state, dates) {
+      state.dates = dates
+    },
+    // Search
+    setSearchDate(state, date) {
+      if (date) state.search.date = date
+      else state.search.date = null
+    },
+    setSearchLevel(state, level) {
+      state.search.level = level
     }
   },
   getters: {
@@ -64,7 +79,13 @@ export default {
       await context.dispatch("dance/fetchDances")
       var dances = context.state.dance.fetchedDances
 
-      // Map
+      // Map Dates
+      context.commit(
+        "setDates",
+        classes.map(classe => classe.doneOn)
+      )
+
+      // Map classe
       classes = classes.map(classe => {
         // Learned Dance
         if (classe.learnedDance) {
@@ -78,14 +99,40 @@ export default {
             dances.find(dance => dance.id == reviewedDance)
           )
         }
-
+        // Return
         return classe
       })
-      console.log(classes)
 
+      // console.log(classes)
       context.commit("setFetchedClasses", classes)
     },
+    async setDate(context, date) {
+      if (date) date = date.replaceAll("/", "-")
+      context.commit("setSearchDate", date)
+      await context.dispatch("searchClasses")
+    },
+    async setLevel(context, level) {
+      context.commit("setSearchLevel", level ? level.value : null)
+      await context.dispatch("searchClasses")
+    },
+    async searchClasses({ state, getters, commit }) {
+      var classes = [...state.fetchedClasses]
+      var search = state.search
 
+      if (!getters["isFiltering"]) return
+
+      if (search.date != null) {
+        // Date
+        classes = classes.filter(classe => classe.doneOn == search.date)
+      }
+      // Level
+      if (search.level != null) {
+        classes = classes.filter(classe => classe.level === search.level)
+      }
+
+      // Return
+      commit("setFilteredClasses", classes)
+    },
     async createDance(context, { isUpdating, classe }) {
       // Assert
       console.assert(classe.doneOn, "Le cours doit avoir une date")
@@ -94,19 +141,6 @@ export default {
       if (!isUpdating) {
         dance.id = uuidv4()
       }
-
-      // Uploading file
-      if (choreographyPdfFile) {
-        dance.choreographyPdf = await utils.uploadFileAndGetSecureURL(
-          "dances",
-          dance.id,
-          "choreography",
-          choreographyPdfFile
-        )
-      }
-
-      // Name
-      dance.name = dance.name.charAt(0).toUpperCase() + dance.name.slice(1)
 
       try {
         var response = await db

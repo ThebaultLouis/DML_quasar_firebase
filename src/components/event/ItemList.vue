@@ -5,7 +5,7 @@
         <Item :event="event" />
       </div>
       <template v-slot:loading>
-        <div class="row justify-center q-my-md">
+        <div class="row justify-center">
           <q-spinner-dots color="primary" size="40px" />
         </div>
       </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Albums />
+    <Albums :class="{ 'q-mx-xs': $q.screen.lt.sm }" />
   </div>
 </template>
 

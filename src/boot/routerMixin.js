@@ -10,6 +10,9 @@ export default ({ Vue }) => {
     computed: {
       isOnAdminPath() {
         return this.$route.matched.some(record => record.meta.admin)
+      },
+      isOnClassePath() {
+        return this.$route.matched.some(record => record.meta.classe)
       }
     }
   })

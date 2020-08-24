@@ -1,12 +1,12 @@
 <template>
   <div>
     <!-- gt-xs -->
-    <div class="row items-center q-px-sm" style="min-height:70px">
+    <div class="row items-center" style="min-height:80px">
       <q-separator />
-      <div class="col-8">
+      <div class="col-8 q-pl-sm">
         <div class="row items-center q-gutter-x-sm ">
           <div class="col-3 text-subtitle2 ">
-            {{ doneOn }}
+            {{ timestampToDate(doneOn) }}
           </div>
           <div class="col-4">
             {{ club }}

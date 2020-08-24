@@ -1,7 +1,7 @@
 <template>
   <div>
     <Search />
-    <Dances />
+    <Dances :class="{ 'q-mx-xs': $q.screen.lt.sm }" />
   </div>
 </template>
 
