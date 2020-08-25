@@ -3,54 +3,100 @@ import { db, utils } from "../../services/firebase"
 import router from "../../router"
 import { notification } from "../../services/notification"
 
+// Variables
+const step = 10
+
 export default {
   namespaced: true,
   state: {
     fetchedEvents: [],
-    filteredEvents: [],
-    isAtHome: null,
+    showedEvents: [],
+    isAtHome: null
   },
   mutations: {
+    // Event
     setFetchedEvents(state, events) {
       state.fetchedEvents = events
     },
     addEvent(state, { event, isUpdating }) {
       if (isUpdating) {
-        var i = state.fetchedEvents.findIndex((d) => d.id == event.id)
+        // Fetched
+        var i = state.fetchedEvents.findIndex(d => d.id == event.id)
         state.fetchedEvents[i] = event
+        // ShowedDances
+        i = state.showedEvents.findIndex(d => d.id == event.id)
+        if (i != -1) state.showedEvents[i] = event
       } else {
+        // Fetched
         state.fetchedEvents.unshift(event)
+        // Showed
+        state.showedEvents.unshift(event)
       }
     },
     removeEvent(state, id) {
-      state.fetchedEvents = state.fetchedEvents.filter(
-        (event) => event.id != id
-      )
+      // Fetched
+      state.fetchedEvents = state.fetchedEvents.filter(event => event.id != id)
+      // Showed
+      state.showedEvents = state.showedEvents.filter(event => event.id != id)
     },
-    setFilteredDances(state, events) {
-      state.filteredEvents = events
+    // showedEvents
+    addToShowedEvents(state, events) {
+      state.showedEvents.push(...events)
     },
+    resetShowedEvents(state) {
+      state.showedEvents = []
+    },
+    // Search
     setIsAtHome(state, isAtHome) {
       state.isAtHome = isAtHome
-    },
-    setDate(state, date) {
-      state.Date = date
-    },
+    }
   },
   getters: {
-    events(state, getters) {
-      return getters.isFiltering ? state.filteredEvents : state.fetchedEvents
-    },
-    event: (state) => (id) => {
-      return {
-        ...state.fetchedEvents.find((event) => event.id == id),
-      }
-    },
     isFiltering(state) {
-      return state.isAtHome != null || state.date != null
+      return state.isAtHome != null
     },
+    isShowedEventsEqualsToEvents(state, getters) {
+      return state.showedEvents.length == getters.events.length
+    },
+    events(state, getters) {
+      // No filter
+      if (!getters.isFiltering) return state.fetchedEvents
+      // Filter
+      var isAtHome = state.isAtHome.value
+      return state.fetchedEvents.filter(event => event.isAtHome == isAtHome)
+    },
+    event: state => id => {
+      return {
+        ...state.fetchedEvents.find(event => event.id == id)
+      }
+    }
   },
   actions: {
+    // OnLoad
+    async onLoad({ state, getters, commit, dispatch }, { index, done }) {
+      // Fetch
+      await dispatch("fetchEvents")
+      var events = getters["events"]
+      if (!getters["isShowedEventsEqualsToEvents"]) {
+        commit(
+          "addToShowedEvents",
+          events.slice(step * (index - 1), step * index)
+        )
+        done()
+      } else {
+        done(true)
+      }
+    },
+    // Search
+    async resetShowedEvents({ commit, dispatch }) {
+      commit("resetShowedEvents")
+      await dispatch("onLoad", { index: 1, done: () => {} })
+    },
+    async setIsAtHome(context, isAtHome) {
+      context.commit("setIsAtHome", isAtHome)
+      await context.dispatch("resetShowedEvents")
+    },
+    // Actions
     async fetchEvents(context) {
       if (context.state.fetchedEvents.length) return
 
@@ -67,22 +113,6 @@ export default {
       var events = utils.docsIntoArray(docs)
 
       context.commit("setFetchedEvents", events)
-    },
-    async setIsAtHome(context, isAtHome) {
-      context.commit("setIsAtHome", isAtHome)
-      context.dispatch("searchEvents")
-    },
-    async searchEvents(context) {
-      var { isAtHome, fetchedEvents } = context.state
-
-      if (isAtHome == null) return
-      isAtHome = isAtHome.value
-
-      fetchedEvents = fetchedEvents.filter(
-        (event) => event.isAtHome == isAtHome
-      )
-
-      context.commit("setFilteredDances", fetchedEvents)
     },
     async createEvent(
       context,
@@ -113,7 +143,10 @@ export default {
       }
 
       try {
-        var response = await db.collection("events").doc(event.id).set(event)
+        var response = await db
+          .collection("events")
+          .doc(event.id)
+          .set(event)
         notification.success(
           "La manifestation a bien été " + (isUpdating ? "modifiée" : "créée")
         )
@@ -127,9 +160,12 @@ export default {
       router().go(-1)
     },
     async deleteEvent(context, id) {
-      await db.collection("events").doc(id).delete()
+      await db
+        .collection("events")
+        .doc(id)
+        .delete()
       notification.success("La manifestation a bien été supprimée")
       context.commit("removeEvent", id)
-    },
-  },
+    }
+  }
 }

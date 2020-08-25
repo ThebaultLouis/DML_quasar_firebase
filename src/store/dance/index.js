@@ -19,14 +19,24 @@ export default {
     },
     addDance(state, { dance, isUpdating }) {
       if (isUpdating) {
+        // FetchedDances
         var i = state.fetchedDances.findIndex(d => d.id == dance.id)
         state.fetchedDances[i] = dance
+        // ShowedDances
+        i = state.showedDances.findIndex(d => d.id == dance.id)
+        if (i != -1) state.showedDances[i] = dance
       } else {
+        // Fetched
         state.fetchedDances.unshift(dance)
+        // Showed
+        state.showedDances.unshift(dance)
       }
     },
     removeDance(state, id) {
-      state.dances = state.fetchedDances.filter(dance => dance.id != id)
+      // Fetched
+      state.fetchedDances = state.fetchedDances.filter(dance => dance.id != id)
+      // Showed
+      state.showedDances = state.showedDances.filter(dance => dance.id != id)
     },
     // showedDances
     addToShowedDances(state, dances) {
@@ -77,6 +87,8 @@ export default {
           dances.slice(step * (index - 1), step * index)
         )
         done()
+      } else {
+        done(true)
       }
     },
     // Search

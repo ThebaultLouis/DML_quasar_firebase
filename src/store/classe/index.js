@@ -104,6 +104,8 @@ export default {
           classes.slice(step * (index - 1), step * index)
         )
         done()
+      } else {
+        done(true)
       }
     },
     // Search
