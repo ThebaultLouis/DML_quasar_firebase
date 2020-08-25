@@ -15,22 +15,20 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex"
+import { mapState } from "vuex"
 
 export default {
   components: {
     Item: () => import("components/classe/Item")
   },
-
   computed: {
     ...mapState({
       classes: state => state.classe.showedClasses
-    }),
-    ...mapGetters({
-      isDone: "classe/isShowedClassesEqualsToClasses"
     })
   },
-
+  beforeMount() {
+    this.$store.commit("classe/resetShowedClasses")
+  },
   methods: {
     async onLoad(index, done) {
       await this.$store.dispatch("classe/onLoad", {

@@ -1,27 +1,21 @@
 <template>
   <div>
-    <q-infinite-scroll v-if="!isFiltering" @load="onLoad" :offset="250">
-      <div v-if="dances.length">
-        <div v-for="dance in dances" :key="dance.id">
-          <Item :dance="dance" />
-        </div>
+    <q-infinite-scroll @load="onLoad" :offset="250">
+      <div v-for="dance in dances" :key="dance.id">
+        <Item :dance="dance" />
       </div>
+
       <template v-slot:loading>
         <div class="row justify-center q-my-md">
           <q-spinner-dots color="primary" size="40px" />
         </div>
       </template>
     </q-infinite-scroll>
-    <div v-else>
-      <div v-for="dance in storeDances" :key="dance.id">
-        <Item :dance="dance" />
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex"
+import { mapState } from "vuex"
 
 import Item from "components/dance/Item"
 
@@ -29,28 +23,20 @@ export default {
   components: {
     Item
   },
-  data: () => ({
-    dances: []
-  }),
-  async beforeMount() {
-    await this.$store.dispatch("dance/fetchDances")
+  beforeMount() {
+    this.$store.commit("dance/resetShowedDances")
   },
   computed: {
-    ...mapGetters({
-      storeDances: "dance/dances",
-      isFiltering: "dance/isFiltering"
+    ...mapState({
+      dances: state => state.dance.showedDances
     })
   },
-
   methods: {
     async onLoad(index, done) {
-      await this.$store.dispatch("dance/fetchDances")
-      if (this.dances.length <= this.storeDances.length) {
-        this.dances.push(
-          ...this.storeDances.slice(10 * (index - 1), index * 10)
-        )
-        done()
-      }
+      await this.$store.dispatch("dance/onLoad", {
+        index,
+        done
+      })
     }
   }
 }

@@ -24,7 +24,7 @@ export default {
         return this.$store.state.dance.searchName
       },
       set(value) {
-        this.$store.dispatch("dance/searchDances", value)
+        this.$store.dispatch("dance/setSearchName", value)
       }
     }
   }
