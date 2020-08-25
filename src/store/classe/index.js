@@ -5,7 +5,9 @@ import { notification } from "../../services/notification"
 
 // Modules
 import dance from "../dance"
-import { setLogLevel } from "firebase"
+
+// Variables
+const step = 5
 
 export default {
   namespaced: true,
@@ -14,8 +16,7 @@ export default {
   },
   state: {
     fetchedClasses: [],
-    filteredClasses: [],
-    dates: [],
+    showedClasses: [],
     search: {
       date: null,
       level: null
@@ -36,13 +37,12 @@ export default {
     removeClasse(state, id) {
       state.classes = state.fetchedClasses.filter(classe => classe.id != id)
     },
-    // Filter
-    setFilteredClasses(state, classes) {
-      state.filteredClasses = classes
+    // showedClasses
+    addToShowedClasses(state, classes) {
+      state.showedClasses.push(...classes)
     },
-    // Dates
-    setDates(state, dates) {
-      state.dates = dates
+    resetShowedClasses(state) {
+      state.showedClasses = []
     },
     // Search
     setSearchDate(state, date) {
@@ -57,16 +57,71 @@ export default {
     isFiltering(state) {
       return state.search.date != null || state.search.level != null
     },
+    isShowedClassesEqualsToClasses(state, getters) {
+      return state.showedClasses.length == getters.classes.length
+    },
     classes(state, getters) {
-      return getters.isFiltering ? state.filteredClasses : state.fetchedClasses
+      // No filter
+      if (!getters["isFiltering"]) return state.fetchedClasses
+      // Filter
+      var classes = [...state.fetchedClasses]
+      var search = state.search
+
+      // Date
+      if (search.date) {
+        classes = classes.filter(classe => classe.doneOn == search.date)
+      }
+      // Level
+      if (search.level) {
+        classes = classes.filter(classe => classe.level === search.level)
+      }
+
+      return classes
     },
     classe: state => id => {
       return {
         ...state.fetchedClasses.find(classe => classe.id == id)
       }
+    },
+    // Date
+    dates(state, getters) {
+      var classes = state.fetchedClasses
+      if (state.search.level) {
+        classes = classes.filter(classe => classe.level === search.level)
+      }
+      return classes.map(classe => classe.doneOn)
     }
   },
   actions: {
+    // Showed Dances
+    async onLoad({ state, getters, commit, dispatch }, { index, done }) {
+      // Fetch
+      await dispatch("fetchClasses")
+      var classes = getters["classes"]
+      if (!getters["isShowedClassesEqualsToClasses"]) {
+        commit(
+          "addToShowedClasses",
+          classes.slice(step * (index - 1), step * index)
+        )
+        done()
+      }
+    },
+    // Search
+    async resetShowedClasses({ commit, dispatch }) {
+      commit("resetShowedClasses")
+      await dispatch("onLoad", { index: 1, done: () => {} })
+    },
+    async setDate({ commit, dispatch }, date) {
+      if (date == "") return
+      if (date) date = date.replaceAll("/", "-")
+      commit("setSearchDate", date)
+      await dispatch("resetShowedClasses")
+    },
+    async setLevel({ commit, dispatch }, level) {
+      commit("setSearchLevel", level ? level.value : null)
+      await dispatch("resetShowedClasses")
+    },
+    // Actions
     async fetchClasses(context) {
       if (context.state.fetchedClasses.length) return
       // Classes
@@ -78,12 +133,6 @@ export default {
       // Dances
       await context.dispatch("dance/fetchDances")
       var dances = context.state.dance.fetchedDances
-
-      // Map Dates
-      context.commit(
-        "setDates",
-        classes.map(classe => classe.doneOn)
-      )
 
       // Map classe
       classes = classes.map(classe => {
@@ -99,41 +148,13 @@ export default {
             dances.find(dance => dance.id == reviewedDance)
           )
         }
-        // Return
         return classe
       })
 
       // console.log(classes)
       context.commit("setFetchedClasses", classes)
     },
-    async setDate(context, date) {
-      if (date) date = date.replaceAll("/", "-")
-      context.commit("setSearchDate", date)
-      await context.dispatch("searchClasses")
-    },
-    async setLevel(context, level) {
-      context.commit("setSearchLevel", level ? level.value : null)
-      await context.dispatch("searchClasses")
-    },
-    async searchClasses({ state, getters, commit }) {
-      var classes = [...state.fetchedClasses]
-      var search = state.search
-
-      if (!getters["isFiltering"]) return
-
-      if (search.date != null) {
-        // Date
-        classes = classes.filter(classe => classe.doneOn == search.date)
-      }
-      // Level
-      if (search.level != null) {
-        classes = classes.filter(classe => classe.level === search.level)
-      }
-
-      // Return
-      commit("setFilteredClasses", classes)
-    },
-    async createDance(context, { isUpdating, classe }) {
+    async createClasse(context, { isUpdating, classe }) {
       // Assert
       console.assert(classe.doneOn, "Le cours doit avoir une date")
 
@@ -157,7 +178,7 @@ export default {
       context.commit("addDance", { dance, isUpdating })
       router().go(-1)
     },
-    async deleteDance(context, id) {
+    async deleteClasse(context, id) {
       await db
         .collection("dances")
         .doc(id)

@@ -8,7 +8,7 @@
     <div class="col-5 col-sm-3">
       <Calendar
         @input="value => $store.dispatch('classe/setDate', value)"
-        :dates="$store.state.classe.dates"
+        :dates="$store.getters['classe/dates']"
       />
     </div>
   </div>
