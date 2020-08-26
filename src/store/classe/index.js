@@ -174,13 +174,21 @@ export default {
     },
     async createClasse(context, { isUpdating, classe }) {
       // Assert
-      console.assert(classe.doneOn, "Le cours doit avoir une date")
-      classe.doneOn = classe.doneOn.replaceAll("/", "-")
+      if (!classe.doneOn) {
+        notification.error("Le cours doit avoir une date")
+        return
+      }
+      if (!classe.level) {
+        notification.error("Le cours doit avoir un niveau")
+        return
+      }
 
       // Id
       if (!isUpdating) {
         classe.id = uuidv4()
       }
+      // DoneOn
+      classe.doneOn = classe.doneOn.replaceAll("/", "-")
 
       try {
         var response = await db
@@ -195,7 +203,10 @@ export default {
         notification.error("Le cours n'a pas pu être ajouté ou modifié")
         return
       }
-      context.commit("addClasse", { classe, isUpdating })
+      context.commit("addClasse", {
+        classe,
+        isUpdating
+      })
       router().go(-1)
     },
     async deleteClasse(context, id) {

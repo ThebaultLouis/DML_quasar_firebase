@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function doesFieldExist(field) {
+      return field in request.resource.data
+    }
+    function doesFieldIsNotNull(field) {
+      return doesFieldExist(field) && request.resource.data[""]
+    }
+    
+    // This rule allows anyone with your database reference to view, edit,
+    // and delete all data in your Firestore database. It is useful for getting
+    // started, but it is configured to expire after 30 days because it
+    // leaves your app open to attackers. At that time, all client
+    // requests to your Firestore database will be denied.
+    //
+    // Make sure to write security rules for your app before that time, or else
+    // all client requests to your Firestore database will be denied until you Update
+    // your rules
+    match /{document=**} {
+      // Everybody can read
+      allow read;
+      // Only admin can update and delete
+      allow update, delete: if request.auth != null;
+    }
+    // Dances
+    match /dances/{dance} {
+      allow create: if request.auth != null
+                    && request.resource.data.id != null
+                    && request.resource.data.name != null;
+    }
+    // Classes
+    match /classes/{classe} {
+      allow create: if request.auth != null
+                    && request.resource.data.id != null
+                    && request.resource.data.doneOn != null
+                    && request.resource.data.level != null;
+    }
+    // Events
+    match /events/{event} {
+      allow create: if request.auth != null
+                    && request.resource.data.id != null
+                    && request.resource.data.doneOn != null;
+    }
+    // Albums
+    match /albums/{album} {
+      allow create: if request.auth != null
+                    && request.resource.data.id != null
+                    && request.resource.data.doneOn != null;
+    }
+  }
+}

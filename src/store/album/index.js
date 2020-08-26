@@ -6,7 +6,7 @@ import { notification } from "../../services/notification"
 export default {
   namespaced: true,
   state: {
-    albums: [],
+    albums: []
   },
   mutations: {
     setAlbums(state, albums) {
@@ -16,19 +16,27 @@ export default {
       state.albums.unshift(album)
     },
     removeAlbum(state, id) {
-      state.albums = state.albums.filter((album) => album.id != id)
-    },
+      state.albums = state.albums.filter(album => album.id != id)
+    }
   },
   actions: {
     async fetchAlbums(context) {
       if (context.state.albums.length) return
 
-      var docs = await db.collection("albums").orderBy("doneOn", "desc").get()
+      var docs = await db
+        .collection("albums")
+        .orderBy("doneOn", "desc")
+        .get()
       var events = utils.docsIntoArray(docs)
 
       context.commit("setAlbums", events)
     },
     async createAlbum(context, { album, files }) {
+      // Assert
+      if (!album.doneOn) {
+        notification.error("L'album doit avoir une date")
+        return
+      }
       // Id
       album.id = uuidv4()
 
@@ -47,7 +55,10 @@ export default {
       }
 
       try {
-        var response = await db.collection("albums").doc(album.id).set(album)
+        var response = await db
+          .collection("albums")
+          .doc(album.id)
+          .set(album)
         notification.success("L'album photo a bien été créée")
       } catch (e) {
         console.log(e)
@@ -58,9 +69,12 @@ export default {
       router().go(-1)
     },
     async deleteAlbum(context, id) {
-      await db.collection("albums").doc(id).delete()
+      await db
+        .collection("albums")
+        .doc(id)
+        .delete()
       notification.success("L'album photo a bien été supprimé")
       context.commit("removeAlbum", id)
-    },
-  },
+    }
+  }
 }

@@ -118,6 +118,12 @@ export default {
       context,
       { isUpdating, event, posterPdfFile, playlistPdfFile }
     ) {
+      // Assert
+      if (!event.doneOn) {
+        notification.error("La manifestation doit avoir une date")
+        return
+      }
+      // Updating
       if (!isUpdating) {
         event.id = uuidv4()
       }

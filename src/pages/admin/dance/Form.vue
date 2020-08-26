@@ -82,16 +82,7 @@ export default {
         dance: this.dance,
         choreographyPdfFile: this.choreographyPdfFile
       })
-    },
-    reset() {
-      this.dance = {
-        id: null,
-        name: null,
-        choreographyPdf: null,
-        choreographyVideo: null,
-        songLink: null
-      }
-      // this.choreographyPdfFile = null;
+      this.isLoading = false
     }
   }
 }

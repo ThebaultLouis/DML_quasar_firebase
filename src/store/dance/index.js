@@ -114,11 +114,16 @@ export default {
     // Actions
     async createDance(context, { isUpdating, dance, choreographyPdfFile }) {
       // Assert
-      console.assert(dance.name, "Le nom de la dance ne doit pas être nulle")
+      if (!dance.name) {
+        notification.error("Le nom de la dance ne doit pas être nul")
+        return
+      }
       // Id
       if (!isUpdating) {
         dance.id = uuidv4()
       }
+      // Name
+      dance.name = dance.name.charAt(0).toUpperCase() + dance.name.slice(1)
 
       // Uploading file
       if (choreographyPdfFile) {
@@ -130,9 +135,6 @@ export default {
         )
       }
 
-      // Name
-      dance.name = dance.name.charAt(0).toUpperCase() + dance.name.slice(1)
-
       try {
         var response = await db
           .collection("dances")
@@ -142,10 +144,13 @@ export default {
           "La danse a bien été " + (isUpdating ? "modifiée" : "créée")
         )
       } catch (e) {
-        notification.error("La danse n'a pas pu être ajoutée ou modifiée")
+        notification.error(e.message)
         return
       }
-      context.commit("addDance", { dance, isUpdating })
+      context.commit("addDance", {
+        dance,
+        isUpdating
+      })
       router().go(-1)
     },
     async deleteDance(context, id) {
