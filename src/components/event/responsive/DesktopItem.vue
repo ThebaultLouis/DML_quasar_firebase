@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import Button from "components/shared/button/Button"
+import Button from "components/shared/button/XLButton"
 import DesktopAdminActions from "components/shared/admin/DesktopActions"
 export default {
   props: [

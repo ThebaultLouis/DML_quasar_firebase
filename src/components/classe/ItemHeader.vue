@@ -15,13 +15,12 @@
             class="gt-xs"
             v-if="learnedDance"
             :choreographyPdf="learnedDance.choreographyPdf"
-            :choreographyLink="learnedDance.choreographyLink"
+            :choreographyVideo="learnedDance.choreographyVideo"
             :songLink="learnedDance.songLink"
           />
         </div>
-        <div class="col-4">
+        <div v-if="isOnAdminPath" class="col-4">
           <DesktopAdminActions
-            v-if="isOnAdminPath"
             :id="id"
             updateLinkName="AdminUpdateClasse"
             deleteActionName="classe/deleteClasse"

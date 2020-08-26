@@ -175,6 +175,7 @@ export default {
     async createClasse(context, { isUpdating, classe }) {
       // Assert
       console.assert(classe.doneOn, "Le cours doit avoir une date")
+      classe.doneOn = classe.doneOn.replaceAll("/", "-")
 
       // Id
       if (!isUpdating) {
