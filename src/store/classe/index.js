@@ -28,14 +28,30 @@ export default {
     },
     addClasse(state, { classe, isUpdating }) {
       if (isUpdating) {
-        var i = state.fetchedClasses.findIndex(d => d.id == classe.id)
-        state.fetchedClasses[i] = classe
+        // fetched
+        state.fetchedClasses[
+          state.fetchedClasses.findIndex(d => d.id == classe.id)
+        ] = classe
+        // showed
+        state.showedClasses[
+          state.showedClasses.findIndex(d => d.id == classe.id)
+        ] = classe
       } else {
+        // fetched
         state.fetchedClasses.unshift(classe)
+        // showed
+        state.showedClasses.unshift(classe)
       }
     },
     removeClasse(state, id) {
-      state.classes = state.fetchedClasses.filter(classe => classe.id != id)
+      // fetched
+      state.fetchedClasses = state.fetchedClasses.filter(
+        classe => classe.id != id
+      )
+      // showed
+      state.showedClasses = state.showedClasses.filter(
+        classe => classe.id != id
+      )
     },
     // showedClasses
     addToShowedClasses(state, classes) {
@@ -162,31 +178,32 @@ export default {
 
       // Id
       if (!isUpdating) {
-        dance.id = uuidv4()
+        classe.id = uuidv4()
       }
 
       try {
         var response = await db
-          .collection("dances")
-          .doc(dance.id)
-          .set(dance)
+          .collection("classes")
+          .doc(classe.id)
+          .set(classe)
         notification.success(
-          "La danse a bien été " + (isUpdating ? "modifiée" : "créée")
+          "Le cours a bien été " + (isUpdating ? "modifié" : "créé")
         )
       } catch (e) {
-        notification.error("La danse n'a pas pu être ajoutée ou modifiée")
+        console.log(e)
+        notification.error("Le cours n'a pas pu être ajouté ou modifié")
         return
       }
-      context.commit("addDance", { dance, isUpdating })
+      context.commit("addClasse", { classe, isUpdating })
       router().go(-1)
     },
     async deleteClasse(context, id) {
       await db
-        .collection("dances")
+        .collection("classes")
         .doc(id)
         .delete()
-      context.commit("removeDance", id)
-      notification.success("La danse a bien été supprimée")
+      context.commit("removeClasse", id)
+      notification.success("Le cours a bien été supprimé")
     }
   }
 }

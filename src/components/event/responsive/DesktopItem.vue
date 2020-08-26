@@ -28,8 +28,8 @@
           <div class="col text-center">
             <Button :link="playlistPdf" icon="queue_music" />
           </div>
-          <q-separator v-if="admin" vertical />
-          <div class="col" v-if="admin">
+          <q-separator v-if="isOnAdminPath" vertical />
+          <div class="col" v-if="isOnAdminPath">
             <DesktopAdminActions
               :id="id"
               updateLinkName="AdminUpdateEvent"

@@ -21,9 +21,9 @@
           label="Musique de la chorégraphie"
         />
       </q-card-actions>
-      <q-separator v-if="isOnAdminPath" />
+      <q-separator v-if="isOnAdminPath && !isOnClassePath" />
       <MobileAdminActions
-        v-if="isOnAdminPath"
+        v-if="isOnAdminPath && !isOnClassePath"
         :id="id"
         updateLinkName="AdminUpdateDance"
         deleteActionName="dance/deleteDance"

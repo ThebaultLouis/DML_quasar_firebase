@@ -23,6 +23,11 @@ export default {
         listLinkName: "AdminDances"
       },
       {
+        title: "Cours de Country",
+        createLinkName: "AdminCreateClasse",
+        listLinkName: "AdminClasses"
+      },
+      {
         title: "Manifestations",
         createLinkName: "AdminCreateEvent",
         listLinkName: "AdminEvents"

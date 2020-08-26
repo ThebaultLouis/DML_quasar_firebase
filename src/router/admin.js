@@ -20,6 +20,25 @@ var routes = [
     name: "AdminUpdateDance",
     component: () => import("pages/admin/dance/Form.vue")
   },
+  // Classe
+  {
+    path: "classes",
+    name: "AdminClasses",
+    component: () => import("pages/country/Classes.vue"),
+    meta: {
+      classe: true
+    }
+  },
+  {
+    path: "classe/create",
+    name: "AdminCreateClasse",
+    component: () => import("pages/admin/classe/Form.vue")
+  },
+  {
+    path: "classe/update/:id",
+    name: "AdminUpdateClasse",
+    component: () => import("pages/admin/classe/Form.vue")
+  },
   // Event
   {
     path: "events",

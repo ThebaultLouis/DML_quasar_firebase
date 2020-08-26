@@ -15,7 +15,7 @@
       </q-card-actions>
       <q-separator />
       <MobileAdminActions
-        v-if="admin"
+        v-if="isOnAdminPath"
         :id="id"
         updateLinkName="AdminUpdateEvent"
         deleteActionName="event/deleteEvent"

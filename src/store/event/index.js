@@ -103,7 +103,7 @@ export default {
       var now = new Date()
       var year = now.getFullYear()
       var month = now.getMonth() > 8 ? now.getMonth() : "0" + now.getMonth()
-      var startDate = year + "-" + month
+      var startDate = year + "-" + (month + 1)
 
       var docs = await db
         .collection("events")
@@ -121,6 +121,8 @@ export default {
       if (!isUpdating) {
         event.id = uuidv4()
       }
+      // DoneOn
+      event.doneOn = event.doneOn.replaceAll("/", "-")
 
       // Uploading file
       // Poster

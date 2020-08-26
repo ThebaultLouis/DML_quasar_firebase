@@ -12,8 +12,8 @@
           :songLink="songLink"
         />
       </div>
-      <q-separator v-if="isOnAdminPath" vertical />
-      <div class="col-2" v-if="isOnAdminPath">
+      <q-separator v-if="isOnAdminPath && !isOnClassePath" vertical />
+      <div class="col-2" v-if="isOnAdminPath && !isOnClassePath">
         <DesktopAdminActions
           :id="id"
           updateLinkName="AdminUpdateDance"

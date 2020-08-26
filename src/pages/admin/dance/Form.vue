@@ -72,7 +72,6 @@ export default {
     if (!id) return
 
     this.isUpdating = true
-    console.log(this.$store.getters)
     this.dance = this.$store.getters["dance/dance"](id)
   },
   methods: {

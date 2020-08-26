@@ -17,6 +17,7 @@
           <q-date
             color="brown"
             v-model="value"
+            mask="YYYY-MM-DD"
             @input="() => $refs.qDateProxy.hide()"
             :options="isAValidDate"
           />
@@ -42,7 +43,7 @@ export default {
   },
   methods: {
     isAValidDate(date) {
-      if (!this.dates.length) return true
+      if (!this.dates || !this.dates.length) return true
 
       return this.dates.indexOf(date.replaceAll("/", "-")) != -1
     }

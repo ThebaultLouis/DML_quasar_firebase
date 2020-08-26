@@ -18,6 +18,9 @@ export default {
   props: ["choreographyPdf", "choreographyVideo", "songLink"],
   components: {
     Button
+    // XSButton: () => import("components/shared/button/XSButton"),
+    // MobileAdminActions: () => import("components/shared/admin/MobileActions"),
+    // DesktopAdminActions: () => import("components/shared/admin/DesktopActions")
   }
 }
 </script>
