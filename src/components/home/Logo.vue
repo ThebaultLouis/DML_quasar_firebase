@@ -3,11 +3,12 @@
     <div
       class="background"
       v-bind:style="{
-        'background-image': 'url(' + 'images/home/background-logo.png' + ')'
+        'background-image': 'url(' + 'images/home/background-logo.jpg' + ')',
+        height: $q.screen.lt.sm ? '400px' : 'calc(100vh - 50px)'
       }"
     >
-      <div class="row justify-end">
-        <div class="col-6">
+      <div class="row justify-center">
+        <div class="col-6 text-center">
           <q-img src="images/home/logo_white.png" />
         </div>
       </div>
@@ -22,7 +23,8 @@ export default {}
 <style>
 .background {
   background: contain no-repeat;
-  /* min-height: 500px; */
-  /* background-size: contain; */
+  background-position: bottom;
+  max-height: calc(100vh - 50px);
+  height: calc(100vh - 50px);
 }
 </style>

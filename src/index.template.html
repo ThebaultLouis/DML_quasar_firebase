@@ -3,26 +3,34 @@
   <head>
     <title><%= productName %></title>
 
+    <!-- Primary Meta Tags -->
+    <title>Danse Musique Laillé (DML 35)</title>
+    <meta name="title" content="Danse Musique Laillé (DML 35)" />
+    <meta
+      name="description"
+      content="Bienvenu sur le site officiel de l'association Danse Musique Laillé (DML 35). Ce site vous permet de consulter toutes les danses qui ont été enseignées lors des précédents cours, les futures manifestations et les albums photos de l'association."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://danse-musique-laille.web.app/" />
+    <meta property="og:title" content="Danse Musique Laillé (DML 35)" />
+    <meta
+      property="og:description"
+      content="Bienvenu sur le site officiel de l'association Danse Musique Laillé (DML 35). Ce site vous permet de consulter toutes les danses qui ont été enseignées lors des précédents cours, les futures manifestations et les albums photos de l'association."
+    />
+    <meta
+      property="og:image"
+      content="https://danse-musique-laille.web.app/images/home/background-logo.jpg"
+    />
+
     <meta charset="utf-8" />
-    <meta name="description" content="<%= productDescription %>" />
+    <!-- <meta name="description" content="<%= productDescription %>" /> -->
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta
       name="viewport"
       content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
-    />
-
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="128x128"
-      href="icons/favicon-128x128.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="icons/favicon-96x96.png"
     />
     <link
       rel="icon"
@@ -37,19 +45,32 @@
       href="icons/favicon-16x16.png"
     />
     <link rel="icon" type="image/ico" href="favicon.ico" />
+    <!-- Real fav icon generator -->
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="icons/site.webmanifest" />
+    <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#000000" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
     <!-- DO NOT touch the following DIV -->
     <div id="q-app"></div>
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- <script src="/__/firebase/7.17.2/firebase-app.js"></script> -->
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <!-- <script src="/__/firebase/7.17.2/firebase-analytics.js"></script> -->
-
-    <!-- Initialize Firebase -->
-    <!-- <script src="/__/firebase/init.js"></script> -->
   </body>
 </html>

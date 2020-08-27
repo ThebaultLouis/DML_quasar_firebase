@@ -7,6 +7,19 @@
 
 <script>
 export default {
+  meta: {
+    title: "Tous les cours de Country de l'association dml 35",
+    meta: {
+      ogTitle: {
+        name: "og:title",
+        content: "Tous les cours de Country de l'association dml 35"
+      },
+      ogUrl: {
+        name: "og:url",
+        content: "https://danse-musique-laille.web.app/#/country/classes"
+      }
+    }
+  },
   components: {
     Search: () => import("components/classe/Search"),
     Dances: () => import("components/classe/ItemList")
