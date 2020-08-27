@@ -8,15 +8,15 @@
 <script>
 export default {
   meta: {
-    title: "Tous les cours de Country de l'association dml 35",
+    title: "Tous les cours de Country",
     meta: {
       ogTitle: {
         name: "og:title",
-        content: "Tous les cours de Country de l'association dml 35"
+        content: "Tous les cours de Country"
       },
       ogUrl: {
         name: "og:url",
-        content: "https://danse-musique-laille.web.app/#/country/classes"
+        content: "https://danse-musique-laille.web.app/country/classes"
       }
     }
   },

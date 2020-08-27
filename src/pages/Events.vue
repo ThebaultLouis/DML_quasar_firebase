@@ -8,16 +8,15 @@
 <script>
 export default {
   meta: {
-    title: "Toutes les manifestations enregistrées par l'association dml 35",
+    title: "Toutes les manifestations",
     meta: {
       ogTitle: {
         name: "og:title",
-        content:
-          "Toutes les manifestations enregistrées par l'association dml 35"
+        content: "Toutes les manifestations"
       },
       ogUrl: {
         name: "og:url",
-        content: "https://danse-musique-laille.web.app/#/events"
+        content: "https://danse-musique-laille.web.app/events"
       }
     }
   },

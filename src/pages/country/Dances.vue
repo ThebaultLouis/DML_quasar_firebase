@@ -9,15 +9,15 @@
 <script>
 export default {
   meta: {
-    title: "Toutes les danses Country de l'association dml 35",
+    title: "Toutes les danses Country",
     meta: {
       ogTitle: {
         name: "og:title",
-        content: "Toutes les danses Country de l'association dml 35"
+        content: "Toutes les danses Country"
       },
       ogUrl: {
         name: "og:url",
-        content: "https://danse-musique-laille.web.app/#/country/dances"
+        content: "https://danse-musique-laille.web.app/country/dances"
       }
     }
   },

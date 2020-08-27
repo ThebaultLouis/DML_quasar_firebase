@@ -7,15 +7,15 @@
 <script>
 export default {
   meta: {
-    title: "Tous les albums photos de l'association dml 35",
+    title: "Tous les albums photos",
     meta: {
       ogTitle: {
         name: "og:title",
-        content: "Tous les albums photos de l'association dml 35"
+        content: "Tous les albums photos"
       },
       ogUrl: {
         name: "og:url",
-        content: "https://danse-musique-laille.web.app/#/albums"
+        content: "https://danse-musique-laille.web.app/albums"
       }
     }
   },

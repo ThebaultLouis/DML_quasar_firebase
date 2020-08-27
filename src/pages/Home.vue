@@ -19,8 +19,19 @@ import ParIciLesSorties from "components/home/ParIciLesSorties"
 import AutresStandards from "components/home/AutresStandards"
 
 export default {
+  meta: {
+    meta: {
+      ogTitle: {
+        name: "og:title",
+        content: "Page d'accueil du site de l'association dml 35"
+      },
+      ogUrl: {
+        name: "og:url",
+        content: "https://danse-musique-laille.web.app/"
+      }
+    }
+  },
   components: {
-    // Logo: () => import("components/home/Logo"),
     Logo,
     PrendreBonneNote,
     NosProgrammes,
