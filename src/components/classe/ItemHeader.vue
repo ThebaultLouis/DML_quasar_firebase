@@ -41,28 +41,27 @@
           :link="learnedDance.choreographyPdf"
           color="brown"
           label="Pdf de la chorégraphie"
-        >
-          <XSButton
-            :link="learnedDance.choreographyVideo"
-            color="amber-8"
-            label="Vidéo de la chorégraphie"
-          >
-            <XSButton
-              :link="learnedDance.songLink"
-              color="grey-7"
-              label="Musique de la chorégraphie"
-            >
-              <!-- <q-separator v-if="isOnAdminPath" /> -->
-              <MobileAdminActions
-                v-if="isOnAdminPath"
-                :id="id"
-                v-on:deleted="$emit('deleted')"
-                style="padding:0;margin:0"
-                updateLinkName="AdminUpdateClasse"
-                deleteActionName="classe/deleteClasse"
-              >
-              </MobileAdminActions></XSButton></XSButton></XSButton
-      ></q-card-actions>
+        />
+        <XSButton
+          :link="learnedDance.choreographyVideo"
+          color="amber-8"
+          label="Vidéo de la chorégraphie"
+        />
+        <XSButton
+          :link="learnedDance.songLink"
+          color="grey-7"
+          label="Musique de la chorégraphie"
+        />
+        <!-- <q-separator v-if="isOnAdminPath" /> -->
+        <MobileAdminActions
+          v-if="isOnAdminPath"
+          :id="id"
+          v-on:deleted="$emit('deleted')"
+          style="padding:0;margin:0"
+          updateLinkName="AdminUpdateClasse"
+          deleteActionName="classe/deleteClasse"
+        />
+      </q-card-actions>
     </div>
   </div>
 </template>
