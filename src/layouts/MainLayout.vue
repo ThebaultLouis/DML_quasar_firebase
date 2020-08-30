@@ -1,16 +1,15 @@
 <template>
   <q-layout view="hHh Lpr lff">
-    <q-header elevated>
+    <q-header elevated="">
       <q-toolbar class="bg-brown">
         <q-btn
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          aria-label="Menu"
           flat
           dense
           round
           icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
         />
-
         <q-toolbar-title>
           DML 35
         </q-toolbar-title>
@@ -27,25 +26,21 @@
         <q-img src="images/home/logo_white.png" />
       </div>
       <q-list>
-        <!-- <q-item-label header class="text-grey-8">
-          Essential Links
-        </q-item-label> -->
         <EssentialLink
           v-for="link in essentialLinks"
-          :key="link.title"
           v-bind="link"
-        />
+          :key="link.title"
+        >
+        </EssentialLink>
       </q-list>
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
-    </q-page-container>
+    <q-page-container> <router-view> </router-view></q-page-container>
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from "components/link/EssentialLink.vue";
+import EssentialLink from "components/link/EssentialLink.vue"
 
 const linksData = [
   {
@@ -78,13 +73,8 @@ const linksData = [
     title: "Album photo",
     icon: "photo",
     linkName: "Albums"
-  },
-  {
-    title: "Admin",
-    icon: "person",
-    linkName: "Dashboard"
   }
-];
+]
 
 export default {
   name: "MainLayout",
@@ -93,9 +83,9 @@ export default {
     return {
       leftDrawerOpen: false,
       essentialLinks: linksData
-    };
+    }
   }
-};
+}
 </script>
 
-<style scoped></style>
+<style scoped=""></style>

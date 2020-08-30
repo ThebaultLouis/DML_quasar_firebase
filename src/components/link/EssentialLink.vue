@@ -4,7 +4,12 @@
 
     <q-expansion-item v-else :icon="icon" :label="title">
       <q-separator />
-      <Item v-for="link in children" :key="link.linkName" v-bind="link" />
+      <Item
+        v-for="link in children"
+        :key="link.linkName"
+        v-bind="link"
+        class="q-pl-xl"
+      />
     </q-expansion-item>
   </div>
 </template>
