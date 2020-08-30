@@ -2,7 +2,7 @@
   <div>
     <q-card class="q-ma-sm">
       <q-card-section>
-        <div class="text-h5 q-mt-sm q-mb-xs">{{ doneOn }}</div>
+        <div class="text-h5 q-mt-sm q-mb-xs">{{ timestampToDate(doneOn) }}</div>
         <div class="text-caption text-grey">
           {{ club }}
         </div>
