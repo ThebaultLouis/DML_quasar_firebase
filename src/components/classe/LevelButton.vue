@@ -1,13 +1,14 @@
 <template>
   <q-select
-    filled
     v-bind:value="value"
-    v-on:input="option => $emit('input', option)"
     :options="options"
+    v-on:input="option => $emit('input', option)"
+    filled
     label="Niveau"
     color="brown"
     clearable
-  />
+  >
+  </q-select>
 </template>
 
 <script>

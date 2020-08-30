@@ -2,14 +2,15 @@
   <div class="row q-my-sm q-px-sm">
     <div class="col-0 col-sm-2"></div>
     <div class="col-6 col-sm-4">
-      <LevelButton v-model="model" />
+      <LevelButton v-model="model"> </LevelButton>
     </div>
     <div class="col-1"></div>
     <div class="col-5 col-sm-3">
       <Calendar
-        @input="value => $store.dispatch('classe/setDate', value)"
         :dates="$store.getters['classe/dates']"
-      />
+        @input="value => $store.dispatch('classe/setDate', value)"
+      >
+      </Calendar>
     </div>
   </div>
 </template>

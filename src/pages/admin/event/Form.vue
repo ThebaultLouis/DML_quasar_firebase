@@ -3,27 +3,35 @@
     <q-form @submit="onSubmit">
       <div class="row q-gutter-sm justify-center">
         <div class="col-10 col-sm-3">
-          <q-input filled v-model="event.club" label="Club" />
+          <q-input v-model="event.club" filled label="Club"> </q-input>
         </div>
         <div class="col-10 col-sm-3">
-          <q-input filled v-model="event.city" label="Ville" />
+          <q-input
+            v-model="event.city"
+            filled
+            label="Ville"
+            hint="Pour une manifestation à domicile écrire 'Laillé'"
+          >
+          </q-input>
         </div>
         <div class="col-10 col-sm-2">
-          <q-input filled v-model="event.zipcode" label="Code postal" />
+          <q-input v-model="event.zipcode" filled label="Code postal">
+          </q-input>
         </div>
         <div class="col-10 col-sm-3">
           <Calendar
             :date="event.doneOn"
             @input="value => (event.doneOn = value)"
-          />
+          >
+          </Calendar>
         </div>
       </div>
       <div class="row justify-center q-ma-sm q-gutter-sm">
         <div class="col-12 col-sm-8 col-md-4">
-          <q-file filled v-model="playlistPdfFile" label="Playlist" />
+          <q-file v-model="playlistPdfFile" filled label="Playlist"> </q-file>
         </div>
         <div class="col-12 col-sm-8 col-md-4">
-          <q-file filled v-model="posterPdfFile" label="Poster" />
+          <q-file v-model="posterPdfFile" filled label="Poster"> </q-file>
         </div>
       </div>
       <div class="row justify-center q-mt-sm">

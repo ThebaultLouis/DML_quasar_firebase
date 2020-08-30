@@ -1,13 +1,13 @@
 <template>
   <div>
-    <q-infinite-scroll @load="onLoad" :offset="250">
+    <q-infinite-scroll :offset="250" @load="onLoad">
       <div v-for="classe in classes" :key="classe.id">
-        <Item :classe="classe" />
+        <Item :classe="classe"> </Item>
       </div>
 
-      <template v-slot:loading>
+      <template v-slot:loading="">
         <div class="row justify-center q-my-md">
-          <q-spinner-dots color="primary" size="40px" />
+          <q-spinner-dots color="primary" size="40px"> </q-spinner-dots>
         </div>
       </template>
     </q-infinite-scroll>

@@ -1,26 +1,30 @@
 <template>
   <q-input
+    v-model="value"
     clearable
     filled
     color="brown"
     label="Date"
     mask="date"
-    v-model="value"
   >
-    <template v-slot:append>
-      <q-icon name="event" class="cursor-pointer">
+    <template v-slot:append="">
+      <q-icon class="cursor-pointer" name="event">
         <q-popup-proxy
           ref="qDateProxy"
           transition-show="scale"
           transition-hide="scale"
         >
           <q-date
-            color="brown"
             v-model="value"
-            mask="YYYY-MM-DD"
-            @input="() => $refs.qDateProxy.hide()"
             :options="isAValidDate"
-          />
+            @input="() => $refs.qDateProxy.hide()"
+            color="brown"
+            mask="YYYY-MM-DD"
+          >
+            <div class="row items-center justify-end">
+              <q-btn v-close-popup label="Close" color="primary" flat> </q-btn>
+            </div>
+          </q-date>
         </q-popup-proxy>
       </q-icon>
     </template>

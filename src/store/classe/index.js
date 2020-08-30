@@ -103,7 +103,7 @@ export default {
     dates(state, getters) {
       var classes = state.fetchedClasses
       if (state.search.level) {
-        classes = classes.filter(classe => classe.level === search.level)
+        classes = classes.filter(classe => classe.level === state.search.level)
       }
       return classes.map(classe => classe.doneOn)
     }

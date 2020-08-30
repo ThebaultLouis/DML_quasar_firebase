@@ -1,25 +1,48 @@
 <template>
-  <div class="row q-ma-sm justify-end">
-    <div class="col-12 col-sm-6 col-md-4">
+  <div class="row q-ma-sm justify-around">
+    <div class="col-5 col-sm-4">
       <q-select
-        filled
         v-model="isAtHome"
         :options="options"
+        filled
         label="Lieu"
         color="brown"
         clearable
-      />
+      >
+      </q-select>
+    </div>
+    <div class="col-5 col-sm-4">
+      <q-select
+        v-model="selectedMonth"
+        :options="months"
+        filled
+        label="Mois"
+        color="brown"
+        clearable
+      >
+      </q-select>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  components: {
-    // Calendar: () => import("components/shared/date/Calendar")
-  },
   data: () => ({
-    model: null,
+    month: null,
+    months: [
+      "janvier",
+      "février",
+      "mars",
+      "avril",
+      "mai",
+      "juin",
+      "juillet",
+      "août",
+      "septembre",
+      "octobre",
+      "novembre",
+      "décembre"
+    ],
     options: [
       {
         label: "Domicile",
@@ -34,10 +57,20 @@ export default {
   computed: {
     isAtHome: {
       get() {
-        return this.$store.state.event.isAtHome
+        return this.$store.state.event.search.isAtHome
       },
       set(item) {
         this.$store.dispatch("event/setIsAtHome", item)
+      }
+    },
+    selectedMonth: {
+      get() {
+        return this.month
+      },
+      set(value) {
+        this.month = value
+        var month = this.months.findIndex(month => month == value)
+        this.$store.dispatch("event/setMonth", month != -1 ? month + 1 : null)
       }
     }
   }

@@ -11,7 +11,10 @@ export default {
   state: {
     fetchedEvents: [],
     showedEvents: [],
-    isAtHome: null
+    search: {
+      isAtHome: null,
+      month: null
+    }
   },
   mutations: {
     // Event
@@ -48,12 +51,16 @@ export default {
     },
     // Search
     setIsAtHome(state, isAtHome) {
-      state.isAtHome = isAtHome
+      state.search.isAtHome = isAtHome
+    },
+    setMonth(state, month) {
+      state.search.month = month
     }
   },
   getters: {
     isFiltering(state) {
-      return state.isAtHome != null
+      var { isAtHome, month } = state.search
+      return isAtHome != null || month != -1
     },
     isShowedEventsEqualsToEvents(state, getters) {
       return state.showedEvents.length == getters.events.length
@@ -61,9 +68,22 @@ export default {
     events(state, getters) {
       // No filter
       if (!getters.isFiltering) return state.fetchedEvents
+
       // Filter
-      var isAtHome = state.isAtHome.value
-      return state.fetchedEvents.filter(event => event.isAtHome == isAtHome)
+      var events = state.fetchedEvents
+      var { isAtHome, month } = state.search
+
+      // IsAtHome
+      if (isAtHome) {
+        events = events.filter(event => event.isAtHome == isAtHome.value)
+      }
+
+      // Month
+      if (month != null) {
+        var searchMonth = `-${month.toString().padStart(2, "0")}-`
+        events = events.filter(event => event.doneOn.includes(searchMonth))
+      }
+      return events
     },
     event: state => id => {
       return {
@@ -94,6 +114,10 @@ export default {
     },
     async setIsAtHome(context, isAtHome) {
       context.commit("setIsAtHome", isAtHome)
+      await context.dispatch("resetShowedEvents")
+    },
+    async setMonth(context, month) {
+      context.commit("setMonth", month)
       await context.dispatch("resetShowedEvents")
     },
     // Actions
@@ -129,6 +153,8 @@ export default {
       }
       // DoneOn
       event.doneOn = event.doneOn.replaceAll("/", "-")
+      // IsAtHome
+      event.isAtHome = event.city == "Laillé"
 
       // Uploading file
       // Poster

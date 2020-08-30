@@ -12,54 +12,57 @@
       <div class="row gt-xs">
         <div class="col">
           <ButtonList
-            class="gt-xs"
             v-if="learnedDance"
             :choreographyPdf="learnedDance.choreographyPdf"
             :choreographyVideo="learnedDance.choreographyVideo"
             :songLink="learnedDance.songLink"
-          />
+            class="gt-xs"
+          >
+          </ButtonList>
         </div>
         <div v-if="isOnAdminPath" class="col-4">
           <DesktopAdminActions
             :id="id"
+            v-on:deleted="$emit('deleted')"
             updateLinkName="AdminUpdateClasse"
             deleteActionName="classe/deleteClasse"
-            v-on:deleted="$emit('deleted')"
-          />
+          >
+          </DesktopAdminActions>
         </div>
       </div>
 
       <q-card-actions
-        vertical
         v-if="learnedDance"
         class="row lt-sm"
+        vertical
         style="padding:0;margin:0"
       >
         <XSButton
           :link="learnedDance.choreographyPdf"
           color="brown"
           label="Pdf de la chorégraphie"
-        />
-        <XSButton
-          :link="learnedDance.choreographyVideo"
-          color="amber-8"
-          label="Vidéo de la chorégraphie"
-        />
-        <XSButton
-          :link="learnedDance.songLink"
-          color="grey-7"
-          label="Musique de la chorégraphie"
-        />
-        <!-- <q-separator v-if="isOnAdminPath" /> -->
-        <MobileAdminActions
-          v-if="isOnAdminPath"
-          style="padding:0;margin:0"
-          :id="id"
-          updateLinkName="AdminUpdateClasse"
-          deleteActionName="classe/deleteClasse"
-          v-on:deleted="$emit('deleted')"
-        />
-      </q-card-actions>
+        >
+          <XSButton
+            :link="learnedDance.choreographyVideo"
+            color="amber-8"
+            label="Vidéo de la chorégraphie"
+          >
+            <XSButton
+              :link="learnedDance.songLink"
+              color="grey-7"
+              label="Musique de la chorégraphie"
+            >
+              <!-- <q-separator v-if="isOnAdminPath" /> -->
+              <MobileAdminActions
+                v-if="isOnAdminPath"
+                :id="id"
+                v-on:deleted="$emit('deleted')"
+                style="padding:0;margin:0"
+                updateLinkName="AdminUpdateClasse"
+                deleteActionName="classe/deleteClasse"
+              >
+              </MobileAdminActions></XSButton></XSButton></XSButton
+      ></q-card-actions>
     </div>
   </div>
 </template>
