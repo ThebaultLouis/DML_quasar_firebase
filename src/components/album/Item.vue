@@ -29,7 +29,6 @@
       control-color="brown"
       navigation
       padding
-      :arrows.sync="fullscreen"
       push
     >
       <q-carousel-slide

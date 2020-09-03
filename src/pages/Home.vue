@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <!-- <Logo /> -->
-    <q-infinite-scroll @load="onLoad" :offset="10">
+    <q-infinite-scroll @load="onLoad" :offset="250">
       <Logo v-if="logoIsVisible" />
       <PrendreBonneNote v-if="prendreBonneNoteIsVisible" />
       <NosProgrammes v-if="nosProgrammesIsVisible" />
