@@ -1,5 +1,6 @@
 import * as firebase from "firebase/app"
 import "firebase/auth"
+import "firebase/analytics"
 import "firebase/firestore"
 import "firebase/storage"
 import env from "./env"
@@ -52,4 +53,4 @@ const utils = {
 }
 
 // export utils/refs
-export { db, auth, utils }
+export { firebase, db, auth, utils }
