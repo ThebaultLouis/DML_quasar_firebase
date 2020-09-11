@@ -3,6 +3,17 @@
     <q-form @submit="onSubmit" class="q-gutter-md">
       <div class="row justify-center">
         <div class="col-10 col-sm-6 col-md-4 q-gutter-y-md">
+          <Calendar
+            :date="classe.doneOn"
+            @input="value => (classe.doneOn = value)"
+          />
+          <q-select
+            filled
+            clearable
+            v-model="classe.level"
+            :options="levels"
+            label="Niveau"
+          />
           <q-select
             filled
             clearable
@@ -12,11 +23,6 @@
             label="Danse apprise"
             hint="Si aucune dance n'est sélectionné alors le cours est un cours de révision"
           />
-          <Calendar
-            :date="classe.doneOn"
-            @input="value => (classe.doneOn = value)"
-          />
-
           <div class="row justify-center">
             <q-btn
               color="amber-8"
@@ -75,6 +81,20 @@ export default {
     Calendar: () => import("components/shared/date/Calendar")
   },
   data: () => ({
+    levels: [
+      {
+        label: "Débutant",
+        value: "BEGINNER"
+      },
+      {
+        label: "Novice",
+        value: "NOVICE"
+      },
+      {
+        label: "Intermédiaire",
+        value: "INTERMEDIATE"
+      }
+    ],
     classe: {
       id: null,
       doneOn: null,
@@ -101,13 +121,16 @@ export default {
 
     this.isUpdating = true
     this.classe = this.$store.getters["classe/classe"](id)
+    this.classe.level = this.levels.find(
+      level => (level.value = this.classe.level)
+    )
   },
   methods: {
     async onSubmit() {
-      this.classe.reviewedDances = this.classe.reviewedDances.filter(
-        dance => !!dance
-      )
-      // console.log(this.classe)
+      this.classe.reviewedDances = this.classe.reviewedDances
+        .filter(dance => !!dance)
+        .map(dance => dance.id)
+      this.classe.learnedDance = this.classe.learnedDance.id
       this.isLoading = true
       await this.$store.dispatch("classe/createClasse", {
         isUpdating: this.isUpdating,

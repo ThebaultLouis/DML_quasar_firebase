@@ -189,6 +189,8 @@ export default {
       }
       // DoneOn
       classe.doneOn = classe.doneOn.replaceAll("/", "-")
+      // Level
+      classe.level = classe.level.value
 
       try {
         var response = await db
@@ -203,10 +205,25 @@ export default {
         notification.error("Le cours n'a pas pu être ajouté ou modifié")
         return
       }
+      // Get all Data
+      var dances = context.state.dance.fetchedDances
+      // LearnedDance
+      if (classe.learnedDance) {
+        classe.learnedDance = dances.find(
+          dance => dance.id == classe.learnedDance
+        )
+      }
+      // Reviewed Dances
+      if (classe.reviewedDances) {
+        classe.reviewedDances = classe.reviewedDances.map(reviewedDance =>
+          dances.find(dance => dance.id == reviewedDance)
+        )
+      }
       context.commit("addClasse", {
         classe,
         isUpdating
       })
+      // Router
       router().go(-1)
     },
     async deleteClasse(context, id) {
