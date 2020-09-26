@@ -127,10 +127,10 @@ export default {
   },
   methods: {
     async onSubmit() {
-      this.classe.reviewedDances = this.classe.reviewedDances
-        .filter(dance => !!dance)
-        .map(dance => dance.id)
-      this.classe.learnedDance = this.classe.learnedDance.id
+      // this.classe.reviewedDances = this.classe.reviewedDances
+      //   .filter(dance => !!dance)
+      //   .map(dance => dance.id)
+      // this.classe.learnedDance = this.classe.learnedDance.id
       this.isLoading = true
       await this.$store.dispatch("classe/createClasse", {
         isUpdating: this.isUpdating,

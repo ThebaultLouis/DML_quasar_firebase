@@ -192,6 +192,16 @@ export default {
       // Level
       classe.level = classe.level.value
 
+      // Process
+      var dances = context.state.dance.fetchedDances
+      // Only the id is stored in the database
+      const reviewedDances = classe.reviewedDances
+      const learnedDance = classe.learnedDance
+      classe.reviewedDances = classe.reviewedDances
+        .filter(dance => !!dance)
+        .map(dance => dance.id)
+      if (classe.learnedDance) classe.learnedDance = classe.learnedDance.id
+
       try {
         var response = await db
           .collection("classes")
@@ -206,19 +216,9 @@ export default {
         return
       }
       // Get all Data
-      var dances = context.state.dance.fetchedDances
-      // LearnedDance
-      if (classe.learnedDance) {
-        classe.learnedDance = dances.find(
-          dance => dance.id == classe.learnedDance
-        )
-      }
-      // Reviewed Dances
-      if (classe.reviewedDances) {
-        classe.reviewedDances = classe.reviewedDances.map(reviewedDance =>
-          dances.find(dance => dance.id == reviewedDance)
-        )
-      }
+      classe.reviewedDances = reviewedDances
+      classe.learnedDance = learnedDance
+
       context.commit("addClasse", {
         classe,
         isUpdating
