@@ -1,27 +1,20 @@
 <template>
   <div v-if="!isDeleted">
-    <!-- gt-xs -->
-    <div class="gt-xs ">
-      <DesktopItem v-on:deleted="isDeleted = true" v-bind="event" />
-    </div>
-    <!-- lt-sm -->
-    <div class="lt-sm">
-      <MobileItem
-        v-on:deleted="isDeleted = true"
-        class="q-my-md"
-        v-bind="event"
-      />
-    </div>
+    <MobileItem
+      v-on:deleted="isDeleted = true"
+      class="q-my-md"
+      v-bind="event"
+    />
   </div>
 </template>
 
 <script>
-import DesktopItem from "./responsive/DesktopItem"
+// import DesktopItem from "./responsive/DesktopItem"
 import MobileItem from "./responsive/MobileItem"
 export default {
   props: ["event"],
   components: {
-    DesktopItem,
+    // DesktopItem,
     MobileItem
   },
   data: () => ({

@@ -3,7 +3,7 @@
     <div class="col text-center">
       <q-btn @click="remove" flat size="25px" color="red" icon="close" />
     </div>
-    <div class="col text-center">
+    <div class="col-auto text-center">
       <q-btn
         flat
         size="25px"

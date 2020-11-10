@@ -1,8 +1,12 @@
 <template>
   <div>
     <q-infinite-scroll @load="onLoad" :offset="250">
-      <div v-for="event in events" :key="event._id">
-        <Item :event="event" />
+      <div class="row justify-center">
+        <div class="col col-sm-8 col-md-6">
+          <div v-for="event in events" :key="event._id">
+            <Item :event="event" />
+          </div>
+        </div>
       </div>
       <template v-slot:loading>
         <div class="row justify-center">

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="background"
+      class="background q-pt-sm"
       v-bind:style="{
         'background-image': 'url(' + 'images/home/background-logo.jpg' + ')',
         height: $q.screen.lt.sm ? '400px' : 'calc(100vh - 50px)'
@@ -22,9 +22,9 @@ export default {}
 
 <style>
 .background {
-  background: contain no-repeat;
   background-position: bottom;
   max-height: calc(100vh - 50px);
   height: calc(100vh - 50px);
+  background-size: cover;
 }
 </style>

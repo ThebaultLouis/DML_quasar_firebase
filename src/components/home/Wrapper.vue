@@ -9,13 +9,20 @@
     </div>
     <q-img :src="subtitlePath" />
     <!-- <div :style="{background-image : url(backgroundPath}"> -->
-    <div
-      class="background"
-      v-bind:style="{ 'background-image': 'url(' + backgroundPath + ')' }"
-    >
-      <q-page-container>
+    <div class="lt-sm">
+      <q-page-container class="q-pa-xs">
         <slot> </slot>
       </q-page-container>
+    </div>
+    <div class="gt-xs">
+      <div
+        class="background"
+        v-bind:style="{ 'background-image': 'url(' + backgroundPath + ')' }"
+      >
+        <q-page-container>
+          <slot> </slot>
+        </q-page-container>
+      </div>
     </div>
   </div>
 </template>

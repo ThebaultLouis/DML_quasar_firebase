@@ -5,7 +5,7 @@
         {{ name }}
       </div>
       <q-space />
-      <div class="col-6 col-sm-4">
+      <div class="col-6">
         <ButtonList
           :choreographyPdf="choreographyPdf"
           :choreographyVideo="choreographyVideo"

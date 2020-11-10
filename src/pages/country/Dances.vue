@@ -1,7 +1,7 @@
 <template>
   <div>
     <Search />
-    <q-separator class="gt-xs" />
+    <br class="gt-xs q-my-xs" />
     <Dances :class="{ 'q-mx-xs': $q.screen.lt.sm }" />
   </div>
 </template>
