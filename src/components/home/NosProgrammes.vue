@@ -53,11 +53,7 @@
         </div>
       </div>
 
-      <p class="q-mt-sm">
-        Les cours révisions se déroulent le vendredi
-        <br />
-        1 repas partage avec bal révisions 1 fois par trimestre.
-      </p>
+      
     </div>
   </wrapper>
 </template>
