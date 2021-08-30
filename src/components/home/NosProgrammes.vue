@@ -9,7 +9,7 @@
       <!-- Débutant -->
       <div>
         <div class="text-h6">
-          Débutant - 18h15 : 19h15
+          Débutant - 18h15 : 19h10
         </div>
         <div>
           Ce cours s'adresse aux personnes qui veulent découvrir la danse
