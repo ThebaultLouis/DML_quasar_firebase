@@ -37,7 +37,7 @@
           >
 
           <br />Valérie :
-          <a href="mailto:cvaleriedml35@gmail.com?subject=Manifestation country"
+          <a href="mailto:valeriedml35@gmail.com?subject=Manifestation country"
             >valeriedml35@gmail.com</a
           >
         </p>
