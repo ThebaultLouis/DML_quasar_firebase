@@ -41,6 +41,15 @@
             >valeriedml35@gmail.com</a
           >
         </p>
+        <p class="text-center text-h6">
+          Reprise des cours
+          le mercredi 14 septembre 2022.
+          <br /> Forum samedi 10 septembre 2022 à la salle de l'Archipel de 13h à 17h.
+          <br />Feuille d'inscription : 
+          <a class="q-mr-sm" href="/files/INSCRIPTION 2022-2023.pdf" target="__blank">pdf</a>
+          
+          <a href="/files/INSCRIPTION 2022-2023.docx" target="__blank">docx</a>
+        </p>
       </div>
     </div>
   </wrapper>

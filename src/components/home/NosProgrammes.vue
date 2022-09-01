@@ -9,7 +9,7 @@
       <!-- Débutant -->
       <div>
         <div class="text-h6">
-          Débutant - 18h15 : 19h10
+          Débutant : 18h15 - 19h10
         </div>
         <div>
           Ce cours s'adresse aux personnes qui veulent découvrir la danse
@@ -24,7 +24,7 @@
       <!-- Novice -->
       <div class="q-py-md">
         <div class="text-h6">
-          Novice - 19h15 : 20h10
+          Novice : 19h15 - 20h10
         </div>
         <div>
           Ce cours s’adresse aux personnes qui veulent découvrir de nouvelles
@@ -37,14 +37,14 @@
 <!-- Novice -->
       <div class="q-py-md">
         <div class="text-h6">
-          Novice / Intermédiaire - 20h15 : 20h40
+          Intermédiaire : 20h15 - 21h10
         </div>
         
       </div>
       <!-- Intermédiaire -->
       <div class="q-py-md">
         <div class="text-h6">
-          Intermédiaire - 20h45 : 21h40
+          Intermédiaire + : 21h15 - 22h00
         </div>
         <div>
           Ce cours s’adresse aux personnes qui souhaitent acquérir des

@@ -10,10 +10,9 @@
         DML Laille 35 organise des bals, des manifestations
         <br />et des démos dans la salle de l’archipel à Laillé.
         <br />
-        <br />En décembre le bal du père Noel et en mars le bal annuel.
+        <br />En décembre le bal du père Noel.
         <br />DML Laillé 35 contribue à aider d’autres associations caritatives.
-        <br />Tels que vaincre la » mucoviscidose » de Pléchatel, <br />« Au
-        cœur du don » de Laillé, « le yoga » de Crevin <br />DML Laillé 35 anime
+        <br />DML Laillé 35 anime
         dans les clubs de la région ou dans des festivals.
       </div>
       <div>
