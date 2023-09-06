@@ -26,6 +26,12 @@ npm run lint
 quasar build
 ```
 
+### Deploy the app
+
+```bash
+firebase deploy --only hosting
+```
+
 ### Customize the configuration
 
 See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
