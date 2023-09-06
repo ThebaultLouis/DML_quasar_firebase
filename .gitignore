@@ -36,3 +36,6 @@ yarn-error.log*
 .env.local
 .quasar.env.json
 /src/services/env.js
+
+# firebase
+.firebase
