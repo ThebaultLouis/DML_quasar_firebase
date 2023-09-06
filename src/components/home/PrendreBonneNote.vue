@@ -46,9 +46,7 @@
           le mercredi 13 septembre 2023.
           <br /> Forum samedi 9 septembre 2023 à la salle de l'Archipel de 13h à 17h.
           <br />Feuille d'inscription : 
-          <a class="q-mr-sm" href="/files/INSCRIPTION 2022-2023.pdf" target="__blank">pdf</a>
-          
-          <a href="/files/INSCRIPTION 2022-2023.docx" target="__blank">docx</a>
+          <a class="q-mr-sm" href="/files/INSCRIPTION-2023-2024.pdf" target="__blank">pdf</a>
         </p>
       </div>
     </div>
