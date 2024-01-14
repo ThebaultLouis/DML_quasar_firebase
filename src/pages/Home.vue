@@ -5,7 +5,6 @@
       <PrendreBonneNote v-if="prendreBonneNoteIsVisible" />
       <NosProgrammes v-if="nosProgrammesIsVisible" />
       <ParIciLesSorties v-if="parIciLesSortiesIsVisible" />
-      <AutresStandards v-if="autresStandardsIsVisible" />
     </q-infinite-scroll>
   </q-page>
 </template>
@@ -15,7 +14,6 @@ import Logo from "components/home/Logo"
 import PrendreBonneNote from "components/home/PrendreBonneNote"
 import NosProgrammes from "components/home/NosProgrammes"
 import ParIciLesSorties from "components/home/ParIciLesSorties"
-import AutresStandards from "components/home/AutresStandards"
 
 export default {
   meta: {
@@ -34,15 +32,13 @@ export default {
     Logo,
     PrendreBonneNote,
     NosProgrammes,
-    ParIciLesSorties,
-    AutresStandards
+    ParIciLesSorties
   },
   data: () => ({
     logoIsVisible: false,
     prendreBonneNoteIsVisible: false,
     nosProgrammesIsVisible: false,
-    parIciLesSortiesIsVisible: false,
-    autresStandardsIsVisible: false
+    parIciLesSortiesIsVisible: false
   }),
   methods: {
     onLoad(index, done) {
@@ -58,9 +54,6 @@ export default {
           break
         case 4:
           this.parIciLesSortiesIsVisible = true
-          break
-        case 5:
-          this.autresStandardsIsVisible = true
           break
         default:
           done(true)
