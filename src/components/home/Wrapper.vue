@@ -8,21 +8,10 @@
       </div>
     </div>
     <q-img :src="subtitlePath" />
-    <!-- <div :style="{background-image : url(backgroundPath}"> -->
-    <div class="lt-sm">
+    <div>
       <q-page-container class="q-pa-xs">
         <slot> </slot>
       </q-page-container>
-    </div>
-    <div class="gt-xs">
-      <div
-        class="background"
-        v-bind:style="{ 'background-image': 'url(' + backgroundPath + ')' }"
-      >
-        <q-page-container>
-          <slot> </slot>
-        </q-page-container>
-      </div>
     </div>
   </div>
 </template>
@@ -43,10 +32,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.background {
-  /* background: center / contain no-repeat; */
-  background-size: cover;
-}
-</style>

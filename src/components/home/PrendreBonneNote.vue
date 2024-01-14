@@ -2,16 +2,17 @@
   <wrapper image="bonne_note.png">
     <div class="row justify-center">
       <div class="col">
-        <div class="row justify-center">
-          <q-avatar size="100px">
+        <div class="text-center">
+          <q-avatar size="150px">
             <img src="/images/home/avatar.jpg" />
           </q-avatar>
-        </div>
-        <div class="col text-center">
-          <p class="text-h6">VALERIE SIMON</p>
+          <p class="text-h6">Valerie Simon</p>
           <p class="text-body1">Animatrice danse country</p>
+        </div>
+        <div class="text-center">
+          <img width="400px" src="/images/home/bureau.jpg" />
           <p class="text-body1">
-            Anne-Marie et Franck membres du bureau
+            Franck Valerie Freddy et Marie christine membres du bureau
           </p>
         </div>
         <br class="my-2" />
@@ -31,21 +32,16 @@
           <br />Pour toute demande de renseignement, veuillez nous contacter à
           <br />
           Le bureau :
-          <a
-            href="mailto:countrydanselaille@gmail.com?subject=Manifestation country"
-            >countrydanselaille@gmail.com</a
-          >
+          <a href="mailto:countrydanselaille@gmail.com?subject=Manifestation country">countrydanselaille@gmail.com</a>
 
           <br />Valérie :
-          <a href="mailto:valeriedml35@gmail.com?subject=Manifestation country"
-            >valeriedml35@gmail.com</a
-          >
+          <a href="mailto:valeriedml35@gmail.com?subject=Manifestation country">valeriedml35@gmail.com</a>
         </p>
         <p class="text-center text-h6">
-          Reprise des cours
-          le mercredi 13 septembre 2023.
-          <br /> Forum samedi 9 septembre 2023 à la salle de l'Archipel de 13h à 17h.
-          <br />Feuille d'inscription : 
+          Reprise des cours le mercredi 13 septembre 2023.
+          <br />
+          Forum samedi 9 septembre 2023 à la salle de l'Archipel de 13h à 17h.
+          <br />Feuille d'inscription :
           <a class="q-mr-sm" href="/files/INSCRIPTION-2023-2024.pdf" target="__blank">pdf</a>
         </p>
       </div>
