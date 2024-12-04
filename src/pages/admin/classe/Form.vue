@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import levels from '../Levels';
+import { levels } from '../Levels';
 import { mapState } from "vuex"
 
 export default {

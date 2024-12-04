@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import levels from '../Levels';
+import { levels } from '../Levels';
 
 export default {
   data: () => ({
