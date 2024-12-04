@@ -6,7 +6,17 @@
           <q-input
             filled
             v-model="dance.name"
-            label="Nom de la musique"
+            label="Nom de la Danse"
+            :rules="requiredRule"
+          />
+        </div>
+      </div>
+      <div class="row justify-center">
+        <div class="col-10 col-sm-6 col-md-4">
+          <q-input
+            filled
+            v-model="dance.choreographerName"
+            label="Nom du chorégraphe"
             :rules="requiredRule"
           />
         </div>
@@ -30,10 +40,19 @@
         </div>
         <div class="col-10 col-sm-6 col-md-3">
           <q-input
-            v-model="dance.songLink"
+            v-model="dance.videoLink"
             filled
             color="brown"
-            label="Lien de la musique"
+            label="Lien Video de la danse"
+          />
+        </div>
+        <div class="col-10 col-sm-6 col-md-3">
+          <q-select
+            filled
+            clearable
+            v-model="dance.level"
+            :options="levels"
+            label="Niveau"
           />
         </div>
       </div>
@@ -48,8 +67,11 @@
 </template>
 
 <script>
+import levels from '../Levels';
+
 export default {
   data: () => ({
+    levels: levels,
     dance: {
       id: null,
       name: null,

@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import levels from '../Levels';
 import { mapState } from "vuex"
 
 export default {
@@ -81,20 +82,7 @@ export default {
     Calendar: () => import("components/shared/date/Calendar")
   },
   data: () => ({
-    levels: [
-      {
-        label: "Débutant",
-        value: "BEGINNER"
-      },
-      {
-        label: "Novice",
-        value: "NOVICE"
-      },
-      {
-        label: "Intermédiaire",
-        value: "INTERMEDIATE"
-      }
-    ],
+    levels: levels,
     classe: {
       id: null,
       doneOn: null,
