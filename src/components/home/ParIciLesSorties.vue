@@ -31,6 +31,11 @@
           href="mailto:countrydanselaille@gmail.com?subject=Manifestation country"
           >countrydanselaille@gmail.com</a
         >
+        <br />
+        <a
+          href="mailto:valeriedml35@gmail.com?subject=Manifestation country"
+          >valeriedml35@gmail.com</a
+        >
         <br />avec votre affiche et votre playliste.
         <br />
         <br />Avec plaisir de vous retrouver sur la piste de danse.

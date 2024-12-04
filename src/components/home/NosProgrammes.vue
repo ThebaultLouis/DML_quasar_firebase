@@ -24,7 +24,7 @@
       <!-- Novice -->
       <div class="q-py-md">
         <div class="text-h6">
-          Novice : 19h15 - 20h10
+          Novice : 19h15 - 20h25
         </div>
         <div>
           Ce cours s’adresse aux personnes qui veulent découvrir de nouvelles
@@ -37,7 +37,7 @@
 <!-- Novice -->
       <div class="q-py-md">
         <div class="text-h6">
-          Intermédiaire : 20h15 - 21h10
+          Intermédiaire : 20h30 – 21h 45
         </div>
         
       </div>
